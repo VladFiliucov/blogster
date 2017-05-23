@@ -1,3 +1,15 @@
 require('babel-register');
+import React from 'react';
 
-require('./render')
+import BlogItem from './ui/BlogItem';
+
+const Main = () => (
+  <BlogItem />
+  <BlogItem />
+  <BlogItem />
+)
+
+ReactDOM.render(
+    <Main />,
+    document.getElementById('root')
+);
