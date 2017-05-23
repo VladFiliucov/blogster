@@ -1,11 +1,10 @@
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 
-import BlogItem from './ui/BlogItem';
+import BlogList from './containers/BlogList';
 
 const Main = () => (
-  <BlogItem />
-  <BlogItem />
-  <BlogItem />
+  <BlogList />
 )
 
 ReactDOM.render(
