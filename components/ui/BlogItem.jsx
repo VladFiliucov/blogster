@@ -9,12 +9,14 @@ const altText= "Guy rides a co...grown chicken"
 const text = "Lorem ipsum could be here"
 
 const BlogItem = () => (
-  <Image
-    imageAddress={imageURL}
-    style={style}
-    altText={altText}
-  />
-  <TextBox text={text} />
+  <div>
+    <Image
+      imageAddress={imageURL}
+      style={style}
+      altText={altText}
+    />
+    <TextBox text={text} />
+  </div>
 )
 
 export default BlogItem;

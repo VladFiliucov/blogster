@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import BlogItem from '../ui/BlogItem';
 
-export default class BlogList extends Component {
+class BlogList extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -18,3 +18,4 @@ export default class BlogList extends Component {
   }
 }
 
+export default BlogList;
