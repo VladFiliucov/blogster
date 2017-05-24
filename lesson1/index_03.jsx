@@ -13,17 +13,15 @@ const Image = (props) => (
   </div>
 )
 
-const TextBox = (props) => (
-  <span> { props.text } </span>
-)
+const TextBox = ({children}) => <span>{ children }</span>;
 
 const BlogItem = () => (
   <Image
     imageAddress={imageURL}
     style={style}
-    altText={altText} 
+    altText={altText}
   />
-  <TextBox text={text} />
+  <TextBox>{text}</TextBox>
 )
 
 const Main = () => (

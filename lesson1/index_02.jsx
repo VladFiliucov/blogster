@@ -1,11 +1,9 @@
 const text = "Lorem ipsum could be here"
 
-const TextBox = (props) => (
-  <span> { props.text } </span>
-)
+const TextBox = ({children}) => <span>{ children }</span>;
 
 const Main = () => (
-  <TextBox text={text} />
+  <TextBox>{text}</TextBox>
 )
 
 ReactDOM.render(
