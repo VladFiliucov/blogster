@@ -10,7 +10,7 @@ const BlogItem = (props) => (
       style={props.style}
       altText={props.altText}
     />
-    <TextBox text={props.text} />
+    <TextBox>{props.text}</TextBox>
   </div>
 )
 
