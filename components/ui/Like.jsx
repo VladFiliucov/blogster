@@ -4,7 +4,7 @@ class Like extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      likes: 0
+      likes: this.props.likes || 0
     }
     this.incrementLikes = this.incrementLikes.bind(this)
   }

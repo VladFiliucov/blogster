@@ -10,7 +10,7 @@ const BlogItem = (props) => (
     <Image image={props.post.image} />
     <TextBox>{props.post.text}</TextBox>
     <PostDetails details={props.post.details} />
-    <Like />
+    <Like likes={props.post.details.likes} />
   </div>
 )
 
