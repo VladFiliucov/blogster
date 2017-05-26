@@ -6,7 +6,7 @@ import TextBox from './TextBox';
 const BlogItem = (props) => (
   <div>
     <Image image={props.post.image} />
-    <TextBox>{props.text}</TextBox>
+    <TextBox>{props.post.text}</TextBox>
   </div>
 )
 
