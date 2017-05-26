@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Like extends Component {
   constructor(props) {
@@ -22,4 +23,9 @@ class Like extends Component {
     );
   }
 }
+
+Like.propTypes = {
+  likes: PropTypes.number.isRequired
+}
+
 export default Like;
