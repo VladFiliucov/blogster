@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Image = (props) => (
   <div>
@@ -9,5 +10,16 @@ const Image = (props) => (
      />
   </div>
 )
+
+Image.propTypes = {
+  image: PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+    style: PropTypes.shape({
+      width: PropTypes.number.isRequired,
+      height: PropTypes.number.isRequired
+    })
+  })
+}
 
 export default Image;
