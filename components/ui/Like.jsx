@@ -24,6 +24,11 @@ class Like extends Component {
   }
 }
 
+Like.defaultProps = {
+  /* omg I handle this in initial state. Overkill? */
+  likes: 0
+}
+
 Like.propTypes = {
   likes: PropTypes.number.isRequired
 }
