@@ -3,9 +3,9 @@ import React from 'react';
 const Image = (props) => (
   <div>
      <img
-       src={props.post.src}
-       style={props.post.style}
-       alt={props.post.alt}
+       src={props.image.src}
+       style={props.image.style}
+       alt={props.image.alt}
      />
   </div>
 )
