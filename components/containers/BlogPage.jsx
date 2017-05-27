@@ -83,10 +83,7 @@ export default class BlogPage extends Component {
     return (
       <div>
         <BlogList posts={this.state.posts} incrementLikesForPost={this.incrementLikesForPost} />
-        <PieChart columns={[
-          ['data1', 30, 23, 45, 56, 12, 84],
-          ['data2', 50, 31, 56, 86, 92, 34],
-        ]} />
+        <PieChart columns={[ ...this.state.posts.map(post => [post.text, post.details.likes]) ]} />
       </div>
     );
   }
