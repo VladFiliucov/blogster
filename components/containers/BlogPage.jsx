@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 
 import BlogList from '../ui/BlogList';
+import PieChart from '../ui/PieChart';
 
 const post1 =  {
   id: 1,
@@ -80,7 +81,13 @@ export default class BlogPage extends Component {
 
   render() {
     return (
-      <BlogList posts={this.state.posts} incrementLikesForPost={this.incrementLikesForPost} />
+      <div>
+        <BlogList posts={this.state.posts} incrementLikesForPost={this.incrementLikesForPost} />
+        <PieChart columns={[
+          ['data1', 30, 23, 45, 56, 12, 84],
+          ['data2', 50, 31, 56, 86, 92, 34],
+        ]} />
+      </div>
     );
   }
 }
