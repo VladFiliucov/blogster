@@ -1,8 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 
-import BlogItem from '../ui/BlogItem';
-
 const post1 =  {
   id: 1,
   text: "This is an awesome blogpost 1",
@@ -50,21 +48,3 @@ const post3 =  {
     style: {width: 200, height: 200}
   }
 }
-
-class BlogList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <BlogItem post={post1} />
-        <BlogItem post={post2}/>
-        <BlogItem post={post3}/>
-      </div>
-    );
-  }
-}
-
-export default BlogList;
