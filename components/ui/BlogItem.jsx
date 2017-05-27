@@ -25,14 +25,7 @@ BlogItem.propTypes = {
       updated_at: PropTypes.string,
       likes: PropTypes.number
     }),
-    image: PropTypes.shape({
-      src: PropTypes.string,
-      alt: PropTypes.string,
-      style: PropTypes.shape({
-        width: PropTypes.number,
-        height: PropTypes.number
-      })
-    })
+    image: Image.propTypes.image
   })
 }
 
