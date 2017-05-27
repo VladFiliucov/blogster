@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
+
+import BlogList from '../ui/BlogList';
 
 const post1 =  {
   id: 1,
@@ -48,3 +50,18 @@ const post3 =  {
     style: {width: 200, height: 200}
   }
 }
+
+const posts = [post1, post2, post3]
+
+export default class BlogPage extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <BlogList posts={posts} />
+    );
+  }
+}
+
