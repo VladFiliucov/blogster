@@ -8,11 +8,18 @@ export default class PieChart extends Component {
       data: {
         columns: this.props.columns ,
         type : 'pie',
-        onclick: function (d, i) { console.log("onclick", d, i); },
-        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
       }
     });
+  }
+
+  componentWillUnmount() {
+    this.chart.destroy();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props != nextProps) {
+      this.chart.load({ columns: nextProps.columns })
+    }
   }
 
   render() {
