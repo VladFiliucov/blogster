@@ -12,7 +12,10 @@ export default class BlogList extends React.Component {
       <div>
         {
           this.props.posts.map(post => {
-            return <BlogItem key={post.id} post={post} />
+            return <BlogItem
+              key={post.id}
+              post={post}
+              incrementLikesForPost={this.props.incrementLikesForPost} />
           })
         }
       </div>

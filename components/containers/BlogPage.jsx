@@ -80,7 +80,7 @@ export default class BlogPage extends Component {
 
   render() {
     return (
-      <BlogList posts={this.state.posts} />
+      <BlogList posts={this.state.posts} incrementLikesForPost={this.incrementLikesForPost} />
     );
   }
 }
