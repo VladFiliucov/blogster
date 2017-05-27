@@ -56,11 +56,31 @@ const posts = [post1, post2, post3]
 export default class BlogPage extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      posts
+    }
+  }
+
+  incrementLikesForPost(postId) {
+    const { posts } = this.state;
+    const postIndex = posts.findIndex(post => post.id == postId)
+
+    if (postIndex > -1) {
+      const post = posts[postIndex]
+      post.details.likes += 1
+
+      this.setState({
+        posts: posts
+          .slice(0, postIndex)
+          .concat(post)
+          .concat(posts.slice(postIndex + 1))
+      })
+    }
   }
 
   render() {
     return (
-      <BlogList posts={posts} />
+      <BlogList posts={this.state.posts} />
     );
   }
 }
