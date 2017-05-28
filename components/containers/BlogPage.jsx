@@ -66,10 +66,6 @@ export default class BlogPage extends Component {
   incrementLikesForPost(postId) {
     const { posts } = this.state;
     const postIndex = posts.findIndex(post => post.id == postId)
-const newData = update(myData, {
-  x: {y: {z: {$set: 7}}},
-  a: {b: {$push: [9]}}
-});
 
     if (postIndex > -1) {
       const post = posts[postIndex]
