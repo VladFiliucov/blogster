@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import update from 'immutability-helper';
 
 import BlogList from '../ui/BlogList';
 import PieChart from '../ui/PieChart';
@@ -65,15 +66,21 @@ export default class BlogPage extends Component {
   incrementLikesForPost(postId) {
     const { posts } = this.state;
     const postIndex = posts.findIndex(post => post.id == postId)
+const newData = update(myData, {
+  x: {y: {z: {$set: 7}}},
+  a: {b: {$push: [9]}}
+});
 
     if (postIndex > -1) {
       const post = posts[postIndex]
-      post.details.likes += 1
+      const updatedPost = update(post, {
+        details: {likes: {$set: {post.details.likes + 1}}}
+      })
 
       this.setState({
         posts: posts
           .slice(0, postIndex)
-          .concat(post)
+          .concat(updatedPost)
           .concat(posts.slice(postIndex + 1))
       })
     }
