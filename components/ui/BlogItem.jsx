@@ -6,14 +6,14 @@ import TextBox from './TextBox';
 import PostDetails from './PostDetails';
 import Like from './Like';
 
-const BlogItem = (props) => (
+const BlogItem = ({post, incrementLikes}) => (
   <div>
-    <Image image={props.post.image} />
-    <TextBox>{props.post.text}</TextBox>
-    <PostDetails details={props.post.details} />
+    <Image image={post.image} />
+    <TextBox>{post.text}</TextBox>
+    <PostDetails details={post.details} />
     <Like
-      likes={props.post.details.likes}
-      incrementLikesForPost={props.incrementLikesForPost} />
+      likes={post.details.likes}
+      incrementLikes={incrementLikes} />
   </div>
 )
 

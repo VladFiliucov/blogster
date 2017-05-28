@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Like = (props) => (
+const Like = ({likes, incrementLiks}) => (
   <div>
-    {props.likes}
-    <button onClick={() => props.incrementLikesForPost(props.postId)} >+</button>
+    {likes}
+    <button onClick={() => incrementLikes(props.postId)} >+</button>
   </div>
 );
 
@@ -14,7 +14,7 @@ Like.defaultProps = {
 
 Like.propTypes = {
   likes: PropTypes.number.isRequired,
-  incrementLikesForPost: PropTypes.func.isRequired
+  incrementLikes: PropTypes.func.isRequired
 }
 
 export default Like;

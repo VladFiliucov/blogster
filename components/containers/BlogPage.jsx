@@ -61,9 +61,10 @@ export default class BlogPage extends Component {
     this.state = {
       posts
     }
+    this.incrementLikes = this.incrementLikes.bind(this)
   }
 
-  incrementLikesForPost(postId) {
+  incrementLikes(postId) {
     const { posts } = this.state;
     const postIndex = posts.findIndex(post => post.id == postId)
 
@@ -85,7 +86,7 @@ export default class BlogPage extends Component {
   render() {
     return (
       <div>
-        <BlogList posts={this.state.posts} incrementLikesForPost={this.incrementLikesForPost} />
+        <BlogList posts={this.state.posts} incrementLikes={this.incrementLikes} />
         <PieChart columns={[ ...this.state.posts.map(post => [post.text, post.details.likes]) ]} />
       </div>
     );
