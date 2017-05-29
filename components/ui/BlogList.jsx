@@ -4,7 +4,7 @@ import BlogItem from './BlogItem';
 
 export default class BlogList extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
