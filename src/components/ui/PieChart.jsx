@@ -6,7 +6,7 @@ export default class PieChart extends Component {
     this.chart = c3.generate({
       bindto: ReactDOM.findDOMNode(this.refs.chart),
       data: {
-        columns: this.props.columns ,
+        columns: this.props.columns,
         type : 'pie',
       }
     });

@@ -9,15 +9,15 @@ const Image = (props) => (
        alt={props.image.alt || Image.defaultProps.image.alt}
      />
   </div>
-)
+);
 
 Image.defaultProps = {
   image: {
-    src: "http://www.pedalo.co.uk/wp-content/uploads/2016/07/My-Water-Filters-404-page.jpg",
-    alt: "No Image Provided",
+    src: 'http://www.pedalo.co.uk/wp-content/uploads/2016/07/My-Water-Filters-404-page.jpg',
+    alt: 'No Image Provided',
     style: {width: 200, height: 200}
   }
-}
+};
 
 Image.propTypes = {
   image: PropTypes.shape({
@@ -28,6 +28,6 @@ Image.propTypes = {
       height: PropTypes.number.isRequired
     })
   })
-}
+};
 
 export default Image;

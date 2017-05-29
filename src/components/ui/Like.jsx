@@ -10,11 +10,11 @@ const Like = ({likes, incrementLiks}) => (
 
 Like.defaultProps = {
   likes: 0
-}
+};
 
 Like.propTypes = {
   likes: PropTypes.number.isRequired,
   incrementLikes: PropTypes.func.isRequired
-}
+};
 
 export default Like;
