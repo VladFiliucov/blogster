@@ -10,7 +10,7 @@ const post1 =  {
     likes: 12
   },
   image: {
-    src: "https://s-media-cache-ak0.pinimg.com/736x/8b/d1/b8/8bd1b8b02e9cb633adb1d789dd4588c6.jpg",
+    src: "/public/pictures/picture1.jpg",
     alt: "Who cares",
     style: {width: 200, height: 200}
   }
@@ -26,7 +26,7 @@ const post2 =  {
     likes: 34
   },
   image: {
-    src: "https://s-media-cache-ak0.pinimg.com/736x/8b/d1/b8/8bd1b8b02e9cb633adb1d789dd4588c6.jpg",
+    src: "/public/pictures/picture2.jpg",
     alt: "Who cares",
     style: {width: 200, height: 200}
   }
@@ -42,7 +42,7 @@ const post3 =  {
     likes: 99
   },
   image: {
-    src: "https://s-media-cache-ak0.pinimg.com/736x/8b/d1/b8/8bd1b8b02e9cb633adb1d789dd4588c6.jpg",
+    src: "/public/pictures/picture3.jpg",
     alt: "Who cares",
     style: {width: 200, height: 200}
   }
