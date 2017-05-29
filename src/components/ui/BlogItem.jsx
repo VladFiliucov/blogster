@@ -15,7 +15,7 @@ const BlogItem = ({post, incrementLikes}) => (
       likes={post.details.likes}
       incrementLikes={incrementLikes} />
   </div>
-)
+);
 
 BlogItem.propTypes = {
   post: PropTypes.shape({
@@ -29,6 +29,6 @@ BlogItem.propTypes = {
     }),
     image: Image.propTypes.image
   })
-}
+};
 
 export default BlogItem;

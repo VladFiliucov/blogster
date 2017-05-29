@@ -1,5 +1,4 @@
-{
-  "parser": "babel-eslint",
+module.exports = {
   "env": {
     "browser": true,
     "es6": true,
@@ -79,7 +78,7 @@
       "node": {
         "moduleDirectory": [
           "node_modules",
-          "src"
+          "src/*"
         ]
       }
     }
