@@ -13,7 +13,8 @@ const BlogItem = ({post, incrementLikes}) => (
     <PostDetails details={post.details} />
     <Like
       likes={post.details.likes}
-      incrementLikes={incrementLikes} />
+      incrementLikes={incrementLikes} 
+      postId={post.id} />
   </div>
 );
 

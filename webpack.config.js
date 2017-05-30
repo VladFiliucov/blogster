@@ -14,29 +14,34 @@ module.exports = {
     publicPath: '/assets/',
     filename: 'bundle.js'
   },
+  watch: true,
+  devtool: 'source-map',
 
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: [
-          path.resolve(__dirname, "node_modules/")
-        ],
-        loader: "babel-loader",
-
-        options: {
-          presets: ["es2015", "babel-preset-react", "latest"]
+        test: /\.(html|svg|jpe?g|png|ttf|woff2?)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'file-loader',
+        },
+      },
+      {
+        test: /\.(js|jsx)?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
         }
       }
     ]
   },
 
   resolve: {
+    extensions: [".js", ".jsx"],
     modules: [
       "node_modules",
       path.resolve(__dirname, "public")
-    ],
-    extensions: [".js", ".json", ".jsx", ".css"]
+    ]
   }
 };
 
