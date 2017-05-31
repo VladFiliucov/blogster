@@ -2,21 +2,34 @@
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
 var path = require('path');
+const { resolve } = require('path');
 
 var webpack = require('webpack');
 
 var root = path.join(process.cwd(), 'src');
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: [
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
+    "./src/index.js"
+  ],
 
   output: {
     path: path.resolve(__dirname, 'public'),
     publicPath: '/assets/',
     filename: 'bundle.js'
   },
-  watch: NODE_ENV === 'development',
-  devtool: NODE_ENV === 'development' && 'cheap-module-eval-source-map',
+  devtool: 'inline-source-map',
+
+  devServer: {
+    hot: true,
+
+    contentBase: resolve(__dirname, 'public'),
+
+    publicPath: '/assets/'
+  },
 
   module: {
     rules: [
@@ -32,7 +45,7 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
-        }
+        },
       },
       {
         test: /\.css$/,
@@ -64,7 +77,10 @@ module.exports = {
       'process.env': {
         'NODE_ENV': JSON.stringify(NODE_ENV)
       }
-    })
+    }),
+
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin()
   ]
 };
 
