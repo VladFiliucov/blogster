@@ -1,4 +1,5 @@
 /* eslint-disable */
+const NODE_ENV = process.env.NODE_ENV || 'development'
 
 var path = require('path');
 
@@ -14,8 +15,8 @@ module.exports = {
     publicPath: '/assets/',
     filename: 'bundle.js'
   },
-  watch: true,
-  devtool: 'source-map',
+  watch: NODE_ENV === 'development',
+  devtool: NODE_ENV === 'development' && 'cheap-module-eval-source-map',
 
   module: {
     rules: [
@@ -31,6 +32,13 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
+        }
+      },
+      {
+        test: /\.css$/,
+        use: {
+          loader: 'style-loader',
+          loader: 'css-loader?importLoaders=1'
         }
       }
     ]
