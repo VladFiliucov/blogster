@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import RaisedButton from 'material-ui/RaisedButton';
+
 const Like = ({likes, incrementLikes, postId}) => (
   <div>
     {likes}
-    <button onClick={() => incrementLikes(postId)} >+</button>
+    <RaisedButton label="Like" onClick={() => incrementLikes(postId)} className="booking-a-view-button" />
   </div>
 );
 
