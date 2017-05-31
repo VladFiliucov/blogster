@@ -50,6 +50,14 @@ module.exports = {
       "node_modules",
       path.resolve(__dirname, "public")
     ]
-  }
+  },
+
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(NODE_ENV)
+      }
+    })
+  ]
 };
 
