@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import RaisedButton from 'material-ui/RaisedButton';
+injectTapEventPlugin();
 
 const Like = ({likes, incrementLikes, postId}) => (
   <div>
