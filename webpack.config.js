@@ -9,26 +9,29 @@ var webpack = require('webpack');
 var root = path.join(process.cwd(), 'src');
 
 module.exports = {
+  context: resolve(__dirname, 'src'),
+
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    "./src/index.js"
+    "./index.js"
   ],
 
   output: {
-    path: path.resolve(__dirname, 'public'),
-    publicPath: '/assets/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    path: resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
+
   devtool: 'inline-source-map',
 
   devServer: {
     hot: true,
 
-    contentBase: resolve(__dirname, 'public'),
+    contentBase: resolve(__dirname, 'dist'),
 
-    publicPath: '/assets/'
+    publicPath: '/'
   },
 
   module: {
@@ -42,10 +45,8 @@ module.exports = {
       },
       {
         test: /\.(js|jsx)?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
+        use: [ "babel-loader", ],
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
@@ -69,7 +70,7 @@ module.exports = {
     modules: [
       "node_modules",
       './src',
-      path.resolve(__dirname, "public")
+      path.resolve(__dirname, "dist")
     ]
   },
 

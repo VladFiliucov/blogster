@@ -13,7 +13,7 @@ export const posts =  [
       likes: 12
     },
     image: {
-      src: '/public/pictures/picture1.jpg',
+      src: '/pictures/picture1.jpg',
       alt: 'Who cares',
       style: {width: 200, height: 200}
     }
@@ -31,7 +31,7 @@ export const posts =  [
       likes: 34
     },
     image: {
-      src: '/public/pictures/picture2.jpg',
+      src: '/pictures/picture2.jpg',
       alt: 'Who cares',
       style: {width: 200, height: 200}
     }
@@ -49,7 +49,7 @@ export const posts =  [
       likes: 99
     },
     image: {
-      src: '/public/pictures/picture3.jpg',
+      src: '/pictures/picture3.jpg',
       alt: 'Who cares',
       style: {width: 200, height: 200}
     }

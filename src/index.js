@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { AppContainer } from 'react-hot-loader';
 
-import App from './App';
+import App from './components/App';
 
 const rootElement = document.getElementById('blog');
 
@@ -19,7 +19,7 @@ const render = (Component) => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./App', () => {
+  module.hot.accept('./components/App', () => {
     render(App);
   });
 }
