@@ -4,13 +4,13 @@ import update from 'immutability-helper';
 
 import BlogList from '../ui/BlogList';
 import PieChart from '../ui/PieChart';
-import * as posts from '../../constants/static/posts.js';
+import { posts } from '../../constants/static/posts.js';
 
 export default class BlogPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: posts.posts
+      posts
     };
     this.incrementLikes = this.incrementLikes.bind(this);
   }

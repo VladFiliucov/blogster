@@ -6,7 +6,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 const Like = ({likes, incrementLikes, postId}) => (
   <div>
     {likes}
-    <RaisedButton label="Like" onClick={() => incrementLikes(postId)} className="booking-a-view-button" />
+    <RaisedButton label="Like"
+      onClick={() => incrementLikes(postId)}
+      className="like-button" />
   </div>
 );
 
