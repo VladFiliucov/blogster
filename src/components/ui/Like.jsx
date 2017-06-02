@@ -20,7 +20,8 @@ Like.defaultProps = {
 
 Like.propTypes = {
   likes: PropTypes.number.isRequired,
-  incrementLikes: PropTypes.func.isRequired
+  incrementLikes: PropTypes.func.isRequired,
+  postId: PropTypes.number
 };
 
 export default Like;

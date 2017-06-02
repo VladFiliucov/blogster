@@ -1,25 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import BlogItem from './BlogItem';
 
-export default class BlogList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const BlogList = (props) => (
+  <div>
+    {
+      props.posts.map(post => <BlogItem
+        key={post.id}
+        post={post}
+        incrementLikes={props.incrementLikes} />)
+    }
+  </div>
+);
 
-  render() {
-    const { posts, incrementLikes } = this.props
+BlogList.propTypes = {
+  posts: PropTypes.array,
+  incrementLikes: PropTypes.func
+};
 
-    return (
-      <div>
-        {
-          posts.map(post => <BlogItem
-            key={post.id}
-            post={post}
-            incrementLikes={incrementLikes} />)
-        }
-      </div>
-    );
-  }
-}
+export default BlogList;
 

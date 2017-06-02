@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 export default class PieChart extends Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ export default class PieChart extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props != nextProps) {
-      this.chart.load({ columns: nextProps.columns })
+      this.chart.load({ columns: nextProps.columns });
     }
   }
 
@@ -28,4 +29,8 @@ export default class PieChart extends Component {
     );
   }
 }
+
+PieChart.propTypes = {
+  columns: PropTypes.array
+};
 

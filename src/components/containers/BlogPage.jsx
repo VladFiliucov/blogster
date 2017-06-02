@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import update from 'immutability-helper';
 
 import BlogList from '../ui/BlogList';

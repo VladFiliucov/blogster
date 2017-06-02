@@ -13,7 +13,7 @@ const BlogItem = ({post, incrementLikes}) => (
     <PostDetails details={post.details} />
     <Like
       likes={post.details.likes}
-      incrementLikes={incrementLikes} 
+      incrementLikes={incrementLikes}
       postId={post.id} />
   </div>
 );
@@ -24,7 +24,8 @@ BlogItem.propTypes = {
     text: PropTypes.string,
     details: PostDetails.propTypes.details,
     image: Image.propTypes.image
-  })
+  }),
+  incrementLikes: PropTypes.func
 };
 
 export default BlogItem;
