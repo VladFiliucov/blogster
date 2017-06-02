@@ -13,22 +13,19 @@ const BlogItem = ({post, incrementLikes}) => (
     <PostDetails details={post.details} />
     <Like
       likes={post.details.likes}
-      incrementLikes={incrementLikes} />
+      incrementLikes={incrementLikes}
+      postId={post.id} />
   </div>
-)
+);
 
 BlogItem.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.number,
     text: PropTypes.string,
-    details: PropTypes.shape({
-      author: PropTypes.string,
-      created_at: PropTypes.string,
-      updated_at: PropTypes.string,
-      likes: PropTypes.number
-    }),
+    details: PostDetails.propTypes.details,
     image: Image.propTypes.image
-  })
-}
+  }),
+  incrementLikes: PropTypes.func
+};
 
 export default BlogItem;
