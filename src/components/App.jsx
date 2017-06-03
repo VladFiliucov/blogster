@@ -8,14 +8,16 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import BlogPage from 'components/containers/BlogPage';
 import MainLayout from 'components/layouts/MainLayout';
+import Navigation from 'components/ui/shared/Navigation';
 
 const App = () => (
   <MuiThemeProvider>
-    <MainLayout>
       <Router>
+    <MainLayout>
+        <Navigation />
         <Route exact path="/" render={ () => <BlogPage /> } />
-      </Router>
     </MainLayout>
+      </Router>
   </MuiThemeProvider>
 );
 
