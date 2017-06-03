@@ -5,6 +5,8 @@ import BlogList from '../ui/BlogList';
 import PieChart from '../ui/PieChart';
 import { posts } from 'constants/static/posts.js';
 
+import 'components/styles/application/Base.css';
+
 export default class BlogPage extends Component {
   constructor(props) {
     super(props);

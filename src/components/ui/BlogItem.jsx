@@ -6,15 +6,19 @@ import TextBox from './TextBox';
 import PostDetails from './PostDetails';
 import Like from './Like';
 
+import 'components/styles/blog/BlogItem.css'
+
 const BlogItem = ({post, incrementLikes}) => (
-  <div>
+  <div className="wrapper card radius shadowDepth1">
     <Image image={post.image} />
-    <TextBox>{post.text}</TextBox>
-    <PostDetails details={post.details} />
-    <Like
-      likes={post.details.likes}
-      incrementLikes={incrementLikes}
-      postId={post.id} />
+    <div class="card__content card__padding">
+      <PostDetails details={post.details} />
+      <TextBox>{post.text}</TextBox>
+      <Like
+        likes={post.details.likes}
+        incrementLikes={incrementLikes}
+        postId={post.id} />
+    </div>
   </div>
 );
 

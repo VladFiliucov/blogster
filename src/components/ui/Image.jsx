@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Image = (props) => (
-  <div>
+  <div className="card__image border-tlr-radius">
      <img
        src={props.image.src || Image.defaultProps.image.src }
        style={props.image.style || Image.defaultProps.image.style }
