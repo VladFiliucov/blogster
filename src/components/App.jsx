@@ -1,11 +1,14 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import BlogPage from './containers/BlogPage';
+import BlogPage from 'components/containers/BlogPage';
+import MainLayout from 'components/layouts/MainLayout';
 
 const App = () => (
   <MuiThemeProvider>
-    <BlogPage />
+    <MainLayout>
+      <BlogPage />
+    </MainLayout>
   </MuiThemeProvider>
 );
 

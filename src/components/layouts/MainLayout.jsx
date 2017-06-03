@@ -1,7 +1,10 @@
 import React, { PropTypes } from 'react';
 
+import Header from 'components/ui/Header';
+
 const MainLayout = ({children}) => (
   <div>
+    <Header />
     {children}
   </div>
 );
