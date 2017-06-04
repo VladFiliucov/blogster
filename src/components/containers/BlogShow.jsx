@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Spinner from 'components/ui/shared/Spinner';
@@ -31,7 +32,7 @@ export default class BlogShow extends Component {
   }
 
   render() {
-    const { post } = this.state
+    const { post } = this.state;
 
     return (
       <div>
@@ -42,7 +43,11 @@ export default class BlogShow extends Component {
         }
         { this.state.error && <h1>Something wrong with {this.state.error}</h1> }
       </div>
-    )
+    );
   }
 }
+
+BlogShow.propTypes = {
+  postId: PropTypes.number.isRequired
+};
 
