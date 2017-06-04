@@ -12,7 +12,8 @@ export default class BlogPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts
+      posts,
+      isLoading: true
     };
     this.incrementLikes = this.incrementLikes.bind(this);
   }

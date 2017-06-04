@@ -19,6 +19,7 @@
   "homepage": "https://github.com/VladFiliucov/blogster#readme",
   "dependencies": {
     "app-module-path": "^2.2.0",
+    "axios": "^0.16.2",
     "babel-preset-react": "^6.24.1",
     "express": "^4.15.3",
     "immutability-helper": "^2.2.2",
