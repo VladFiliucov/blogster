@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Image from './Image';
 import TextBox from './TextBox';
@@ -10,7 +11,9 @@ import 'components/styles/blog/BlogItem.css'
 
 const BlogItem = ({post, incrementLikes}) => (
   <div className="wrapper card radius shadowDepth1">
-    <Image image={post.image} />
+    <Link  to={`/posts/${post.id}`} >
+      <Image image={post.image} />
+    </Link>
     <div className="card__content card__padding">
       <PostDetails details={post.details} />
       <TextBox>{post.text}</TextBox>
