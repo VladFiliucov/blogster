@@ -35,7 +35,12 @@ export default class BlogShow extends Component {
 
     return (
       <div>
-        <Image image={post.image} />
+        { this.state.isLoading && <Spinner /> }
+        {
+          !this.state.isLoading && !this.state.error &&
+            <Image image={post.image} />
+        }
+        { this.state.error && <h1>Something wrong with {this.state.error}</h1> }
       </div>
     )
   }

@@ -14,16 +14,16 @@ import About from 'components/ui/shared/About';
 
 const App = () => (
   <MuiThemeProvider>
-      <Router>
-    <MainLayout>
+    <Router>
+      <MainLayout>
         <Navigation />
         <Route exact path="/" render={ () => <BlogPage /> } />
         <Route path="/about" component={ About } />
         <Route path="/posts/:postId" render={({match}) => (
           <BlogShow postId={match.params.postId} />
         )} />
-    </MainLayout>
-      </Router>
+      </MainLayout>
+    </Router>
   </MuiThemeProvider>
 );
 
