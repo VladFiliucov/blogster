@@ -3,6 +3,7 @@ import update from 'immutability-helper';
 
 import BlogList from '../ui/BlogList';
 import PieChart from '../ui/PieChart';
+import Spinner from 'components/ui/shared/Spinner';
 import { posts } from 'constants/static/posts.js';
 
 import 'components/styles/application/Base.css';
