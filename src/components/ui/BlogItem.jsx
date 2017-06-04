@@ -11,7 +11,7 @@ import 'components/styles/blog/BlogItem.css'
 const BlogItem = ({post, incrementLikes}) => (
   <div className="wrapper card radius shadowDepth1">
     <Image image={post.image} />
-    <div class="card__content card__padding">
+    <div className="card__content card__padding">
       <PostDetails details={post.details} />
       <TextBox>{post.text}</TextBox>
       <Like

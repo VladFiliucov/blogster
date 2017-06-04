@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import update from 'immutability-helper';
+import axios from 'axios';
 
-import BlogList from '../ui/BlogList';
-import PieChart from '../ui/PieChart';
+import BlogList from 'components/ui/BlogList';
+import PieChart from 'components/ui/PieChart';
 import Spinner from 'components/ui/shared/Spinner';
-import { posts } from 'constants/static/posts.js';
 
 import 'components/styles/application/Base.css';
 
@@ -12,8 +12,9 @@ export default class BlogPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts,
-      isLoading: true
+      posts: [],
+      isLoading: true,
+      error: ''
     };
     this.incrementLikes = this.incrementLikes.bind(this);
   }
@@ -37,15 +38,38 @@ export default class BlogPage extends Component {
     }
   }
 
+  componentDidMount() {
+    axios.get('http://localhost:3000/posts')
+      .then(response => {
+        this.setState({
+          posts: response.data,
+          isLoading: false,
+        });
+      })
+      .catch(error => {
+        this.setState({
+          error: error.message,
+          isLoading: false
+        });
+      });
+  }
+
   render() {
     return (
       <div>
-        <BlogList posts={this.state.posts}
-          incrementLikes={this.incrementLikes} />
-        <PieChart
-          columns={[ ...this.state.posts
-            .map(post => [post.text, post.details.likes]) ]}
-        />
+        { this.state.isLoading && <Spinner /> }
+        {
+          !this.state.isLoading && !this.state.error &&
+            <div>
+              <BlogList posts={this.state.posts}
+                incrementLikes={this.incrementLikes} />
+              <PieChart
+                columns={[ ...this.state.posts
+                  .map(post => [post.text, post.details.likes]) ]}
+              />
+            </div>
+        }
+        { this.state.error && <h1>Something wrong with {this.state.error}</h1> }
       </div>
     );
   }
