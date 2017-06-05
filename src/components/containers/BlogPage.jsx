@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import BlogList from 'components/ui/BlogList';
 import PieChart from 'components/ui/PieChart';
+import SearchBar from 'components/ui/SearchBar';
 import Spinner from 'components/ui/shared/Spinner';
 
 import 'components/styles/application/Base.css';
@@ -57,6 +58,7 @@ export default class BlogPage extends Component {
   render() {
     return (
       <div>
+        <SearchBar />
         { this.state.isLoading && <Spinner /> }
         {
           !this.state.isLoading && !this.state.error &&
