@@ -18,6 +18,7 @@ export default class BlogPage extends Component {
       error: ''
     };
     this.incrementLikes = this.incrementLikes.bind(this);
+    this.searchPosts = this.searchPosts.bind(this);
   }
 
   incrementLikes(postId) {
@@ -39,7 +40,7 @@ export default class BlogPage extends Component {
     }
   }
 
-  componentDidMount() {
+  fetchPosts() {
     axios.get('http://localhost:3000/posts')
       .then(response => {
         this.setState({
@@ -55,10 +56,34 @@ export default class BlogPage extends Component {
       });
   }
 
+  searchPosts(searchTerm, e) {
+    e.preventDefault();
+    axios.get(`http://localhost:3000/search/${searchTerm}`)
+      .then(response => {
+        this.setState({
+          posts: response.data,
+          isLoading: false,
+        });
+      })
+      .then(() => {
+        this.props.history.push(`/search/${searchTerm}`);
+      })
+      .catch(error => {
+        this.setState({
+          error: error.message,
+          isLoading: false
+        });
+      });
+  }
+
+  componentDidMount() {
+    this.fetchPosts();
+  }
+
   render() {
     return (
       <div>
-        <SearchBar />
+        <SearchBar searchPosts={ this.searchPosts } {...this.props} />
         { this.state.isLoading && <Spinner /> }
         {
           !this.state.isLoading && !this.state.error &&

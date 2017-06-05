@@ -12,20 +12,32 @@ import MainLayout from 'components/layouts/MainLayout';
 import Navigation from 'components/ui/shared/Navigation';
 import About from 'components/ui/shared/About';
 
-const App = () => (
-  <MuiThemeProvider>
-    <Router>
-      <MainLayout>
-        <Navigation />
-        <Route exact path="/" render={ () => <BlogPage /> } />
-        <Route path="/about" component={ About } />
-        <Route path="/posts/:postId" render={({match}) => (
-          <BlogShow postId={match.params.postId} />
-        )} />
-      </MainLayout>
-    </Router>
-  </MuiThemeProvider>
-);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <MuiThemeProvider>
+        <Router>
+          <MainLayout>
+            <Navigation />
+            <Route exact path="/" component={ BlogPage } />
+            <Route exact path="/search/:term"
+              component={ BlogPage }
+              {...this.props.match}
+            />
+            <Route path="/about" component={ About } />
+            <Route path="/posts/:postId" render={({match}) => (
+              <BlogShow postId={match.params.postId} />
+            )} />
+          </MainLayout>
+        </Router>
+      </MuiThemeProvider>
+    );
+  }
+};
 
 export default App;
 
