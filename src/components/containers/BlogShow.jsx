@@ -50,6 +50,6 @@ export default class BlogShow extends Component {
 }
 
 BlogShow.propTypes = {
-  postId: PropTypes.number.isRequired
+  postId: PropTypes.string.isRequired
 };
 
