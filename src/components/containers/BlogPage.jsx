@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import update from 'immutability-helper';
 import axios from 'axios';
 
+import { SERVER_ENDPOINT } from 'constants/static/env';
+
 import BlogList from 'components/ui/BlogList';
 import PieChart from 'components/ui/PieChart';
 import SearchBar from 'components/ui/SearchBar';
@@ -41,7 +43,7 @@ export default class BlogPage extends Component {
   }
 
   fetchPosts() {
-    axios.get('http://localhost:3000/posts')
+    axios.get(`${SERVER_ENDPOINT}/posts`)
       .then(response => {
         this.setState({
           posts: response.data,
@@ -58,7 +60,7 @@ export default class BlogPage extends Component {
 
   searchPosts(searchTerm, e) {
     e.preventDefault();
-    axios.get(`http://localhost:3000/search/${searchTerm}`)
+    axios.get(`${SERVER_ENDPOINT}/search/${searchTerm}`)
       .then(response => {
         this.setState({
           posts: response.data,

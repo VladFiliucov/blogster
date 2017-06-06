@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import { SERVER_ENDPOINT } from 'constants/static/env';
+
 import Spinner from 'components/ui/shared/Spinner';
 import Image from 'components/ui/Image';
 
@@ -16,7 +18,7 @@ export default class BlogShow extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3000/posts/${this.props.postId}`)
+    axios.get(`${SERVER_ENDPOINT}/posts/${this.props.postId}`)
       .then(response => {
         this.setState({
           post: response.data,
