@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   BrowserRouter as Router,
   Route
@@ -13,10 +14,6 @@ import Navigation from 'components/ui/shared/Navigation';
 import About from 'components/ui/shared/About';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <MuiThemeProvider>
@@ -37,7 +34,11 @@ class App extends React.Component {
       </MuiThemeProvider>
     );
   }
-};
+}
 
 export default App;
+
+App.propTypes = {
+  match: PropTypes.string
+};
 
