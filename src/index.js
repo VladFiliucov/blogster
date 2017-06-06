@@ -7,7 +7,7 @@ import App from 'components/App';
 
 const rootElement = document.getElementById('blog');
 
-const render = (Component) => {
+const render = () => {
   ReactDOM.render(
     <AppContainer >
       <App />
