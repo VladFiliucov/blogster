@@ -4,22 +4,19 @@ import PropTypes from 'prop-types';
 export default class SearchBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      searchTerm: ''
-    };
   }
 
-  updateInput(e) {
-    this.setState({ searchTerm: e.target.value });
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.searchPosts(this.refs.search.value, e);
+    this.refs.search.value = '';
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={ (e) => this.props.searchPosts(this.state.searchTerm, e) }>
-          <input type="text"
-            value={this.state.searchInput}
-            onChange={this.updateInput.bind(this)} />
+        <form onSubmit={ this.handleSubmit.bind(this) }>
+          <input type="text" ref='search' />
           <button type="submit">Search</button>
         </form>
       </div>
