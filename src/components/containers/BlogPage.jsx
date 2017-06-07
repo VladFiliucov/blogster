@@ -42,8 +42,14 @@ export default class BlogPage extends Component {
     }
   }
 
-  fetchPosts() {
-    axios.get(`${SERVER_ENDPOINT}/posts`)
+  fetchPosts(searchTerm) {
+    let qs = `${SERVER_ENDPOINT}/posts`;
+
+    if (!!searchTerm) {
+      qs = `${SERVER_ENDPOINT}/posts?search=${searchTerm}`;
+    }
+
+    axios.get(qs)
       .then(response => {
         this.setState({
           posts: response.data,
@@ -60,22 +66,8 @@ export default class BlogPage extends Component {
 
   searchPosts(searchTerm, e) {
     e.preventDefault();
-    axios.get(`${SERVER_ENDPOINT}/search/${searchTerm}`)
-      .then(response => {
-        this.setState({
-          posts: response.data,
-          isLoading: false,
-        });
-      })
-      .then(() => {
-        this.props.history.push(`/search/${searchTerm}`);
-      })
-      .catch(error => {
-        this.setState({
-          error: error.message,
-          isLoading: false
-        });
-      });
+    this.fetchPosts(searchTerm);
+    this.props.history.push({pathname: '/', search: searchTerm});
   }
 
   componentDidMount() {
@@ -85,6 +77,7 @@ export default class BlogPage extends Component {
   render() {
     return (
       <div>
+        Search results for { new URLSearchParams(this.props.location.search).get('search') }
         <SearchBar searchPosts={ this.searchPosts } {...this.props} />
         { this.state.isLoading && <Spinner /> }
         {
