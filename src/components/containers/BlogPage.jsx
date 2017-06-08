@@ -10,6 +10,7 @@ import SearchBar from 'components/ui/SearchBar';
 import Spinner from 'components/ui/shared/Spinner';
 
 import 'components/styles/application/Base.css';
+import 'components/styles/blog/BlogPage.css';
 
 export default class BlogPage extends Component {
   constructor(props) {
@@ -76,22 +77,22 @@ export default class BlogPage extends Component {
 
   render() {
     return (
-      <div>
-        Search results for { new URLSearchParams(this.props.location.search).get('search') }
-        <SearchBar searchPosts={ this.searchPosts } {...this.props} />
+      <div className="container">
         { this.state.isLoading && <Spinner /> }
+        { this.state.error && <h1>Something wrong with {this.state.error}</h1> }
         {
           !this.state.isLoading && !this.state.error &&
-            <div>
+            <div className="item">
               <BlogList posts={this.state.posts}
                 incrementLikes={this.incrementLikes} />
-              <PieChart
-                columns={[ ...this.state.posts
-                  .map(post => [post.text, post.details.likes]) ]}
-              />
             </div>
         }
-        { this.state.error && <h1>Something wrong with {this.state.error}</h1> }
+            <div className="item">
+              <SearchBar searchPosts={ this.searchPosts } {...this.props} />
+              <PieChart
+                columns={[ ...this.state.posts
+                  .map(post => [post.text, post.details.likes]) ]} />
+            </div>
       </div>
     );
   }

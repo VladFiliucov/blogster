@@ -20,15 +20,17 @@ class App extends React.Component {
         <Router>
           <MainLayout>
             <Navigation />
-            <Route exact path="/" render={({match, location, history}) => (
-              <BlogPage match={match}
-                location={location}
-                history={history} />
-            ) } />
-            <Route exact path="/about" component={ About } />
-            <Route exact path="/posts/:postId" render={({match}) => (
-              <BlogShow postId={match.params.postId} />
-            )} />
+            <div>
+              <Route exact path="/" render={({match, location, history}) => (
+                <BlogPage match={match}
+                  location={location}
+                  history={history} />
+              ) } />
+              <Route exact path="/about" component={ About } />
+              <Route exact path="/posts/:postId" render={({match}) => (
+                <BlogShow postId={match.params.postId} />
+              )} />
+            </div>
           </MainLayout>
         </Router>
       </MuiThemeProvider>
