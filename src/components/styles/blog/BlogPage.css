@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  width: 100%;
+  margin: 45px auto;
+}
+
+.item {
+  padding: 15px;
+  margin: 5px;
+  background: black;
+}
