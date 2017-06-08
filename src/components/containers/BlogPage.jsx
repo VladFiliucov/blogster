@@ -82,12 +82,12 @@ export default class BlogPage extends Component {
         { this.state.error && <h1>Something wrong with {this.state.error}</h1> }
         {
           !this.state.isLoading && !this.state.error &&
-            <div className="item">
+            <div className="item column1">
               <BlogList posts={this.state.posts}
                 incrementLikes={this.incrementLikes} />
             </div>
         }
-            <div className="item">
+            <div className="item column2">
               <SearchBar searchPosts={ this.searchPosts } {...this.props} />
               <PieChart
                 columns={[ ...this.state.posts
