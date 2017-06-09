@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import 'components/styles/Navigation.css';
 
 const Navigation = () => (
-  <nav className='navigation-menu-container'>
+  <nav className='navigation-menu-container left'>
     <NavLink exact to='/'
       className='nav-link'
       activeStyle={{ background: '#80D8FF' }} >
@@ -13,7 +13,7 @@ const Navigation = () => (
       </div>
     </NavLink>
     <NavLink exact to='/about'
-      className='nav-link'
+      className='nav-link right'
       activeStyle={{ background: '#80D8FF' }} >
       <div>
         About

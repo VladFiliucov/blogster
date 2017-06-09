@@ -12,3 +12,15 @@
   background: #3db5da;
   border-radius: 3px;
 }
+
+.left {
+  margin-left: 0;
+}
+
+.left a {
+  margin-left: 0;
+}
+
+.right {
+  margin-right: 0;
+}
