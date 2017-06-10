@@ -9,6 +9,8 @@ import PieChart from 'components/ui/PieChart';
 import SearchBar from 'components/ui/SearchBar';
 import Spinner from 'components/ui/shared/Spinner';
 
+import { postsPath } from 'helpers/routes/posts.js'
+
 import 'components/styles/application/Base.css';
 import 'components/styles/blog/BlogPage.css';
 
@@ -44,13 +46,9 @@ export default class BlogPage extends Component {
   }
 
   fetchPosts(searchTerm) {
-    let qs = `${SERVER_ENDPOINT}/posts`;
+    let querryObject = { searchTerm, BASE_URL: SERVER_ENDPOINT }
 
-    if (!!searchTerm) {
-      qs = `${SERVER_ENDPOINT}/posts?search=${searchTerm}`;
-    }
-
-    axios.get(qs)
+    axios.get(postsPath(querryObject))
       .then(response => {
         this.setState({
           posts: response.data,
