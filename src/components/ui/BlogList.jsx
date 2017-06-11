@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import BlogItem from './BlogItem';
+import BlogItem from 'components/ui/BlogItem';
 
 const BlogList = (props) => (
   <div>

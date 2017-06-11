@@ -1,0 +1,26 @@
+.navigation-menu-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  flex-grow: 2;
+  flex-basis: 200px;
+  color: #fff;
+  padding: 15px;
+  margin: 5px;
+  background: #3db5da;
+  border-radius: 3px;
+}
+
+.left {
+  margin-left: 0;
+}
+
+.left a {
+  margin-left: 0;
+}
+
+.right {
+  margin-right: 0;
+}
