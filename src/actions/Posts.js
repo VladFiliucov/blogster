@@ -10,8 +10,8 @@ const requestPosts = () => ({
 });
 
 const recievePosts = (response) => ({
-  type: types.FETCH_POSTS_SUCCESS,
-  response
+  response,
+  type: types.FETCH_POSTS_SUCCESS
 });
 
 const errorPosts = () => ({
@@ -27,7 +27,7 @@ export function fetchPosts(searchTerm) {
     return axios
     .get(postsPath(querryObject))
       .then(response => {
-        dispatch(recievePosts(response));
+        dispatch(recievePosts(response.data));
       })
       .catch(error => {
         dispatch(errorPosts());
