@@ -18,8 +18,8 @@ const errorPosts = () => ({
   type: types.FETCH_POSTS_ERROR
 });
 
-export function fetchPosts() {
-  const querryObject = { BASE_URL: SERVER_ENDPOINT };
+export function fetchPosts(searchTerm) {
+  const querryObject = { searchTerm, BASE_URL: SERVER_ENDPOINT };
 
   return (dispatch) => {
     dispatch(requestPosts());
