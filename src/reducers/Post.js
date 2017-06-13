@@ -8,7 +8,7 @@ const initialState = {
   post: null
 };
 
-export default function(state, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_POST_REQUEST:
       return assign({}, initialState, { isLoading: true });
