@@ -13,24 +13,22 @@ import About from 'components/ui/shared/About';
 class ApplicationRouter extends Component {
   render() {
     return (
-      <div>
-        <Router>
-          <MainLayout>
-            <Navigation />
-            <div>
-              <Route exact path="/" render={({match, location, history}) => (
-                <BlogPage match={match}
-                  location={location}
-                  history={history} />
-              ) } />
-              <Route exact path="/about" component={ About } />
-              <Route exact path="/posts/:postId" render={({match}) => (
-                <BlogShow postId={match.params.postId} />
-              )} />
-            </div>
-          </MainLayout>
-        </Router>
-      </div>
+      <Router>
+        <MainLayout>
+          <Navigation />
+          <div>
+            <Route exact path="/" render={({match, location, history}) => (
+              <BlogPage match={match}
+                location={location}
+                history={history} />
+            ) } />
+            <Route exact path="/about" component={ About } />
+            <Route exact path="/posts/:postId" render={({match}) => (
+              <BlogShow postId={match.params.postId} />
+            )} />
+          </div>
+        </MainLayout>
+      </Router>
     );
   }
 }

@@ -46,7 +46,7 @@ export default class BlogPage extends Component {
   }
 
   fetchPosts(searchTerm) {
-    let querryObject = { searchTerm, BASE_URL: SERVER_ENDPOINT }
+    const querryObject = { BASE_URL: SERVER_ENDPOINT, searchTerm  };
 
     axios.get(postsPath(querryObject))
       .then(response => {
