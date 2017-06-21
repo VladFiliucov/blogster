@@ -5,51 +5,49 @@ import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  matchPath
 } from 'react-router-dom';
-import routes from 'routes';
+import createRoutes from 'routes';
 
 import createHistory from 'history/createBrowserHistory';
-import { withRouter } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Navigation from 'components/ui/shared/Navigation';
 
 import DevTools from 'components/containers/DevTools';
 
 import store from 'store';
-import ApplicationRouter from 'routes';
 import prepareData from 'helpers/prepareData';
 
 const history = createHistory();
 
-history.listen(function(location) {
-  match({location, routes}, (error, redirect, state) => {
-    if (!error && !redirect) {
-      prepareData(store, state);
-    }
-  });
-});
-
 const RouteWithSubRoutes = (route) => (
   <Route path={route.path} render={props => (
-    route.render ? route.render(props) : <route.component {...props} routes={route.routes}/>
+    route.render
+    ? route.render(props)
+    : <route.component {...props} routes={route.routes}/>
   )}/>
 );
 
 class App extends React.Component {
   render() {
-  console.log(history);
+    const routes = createRoutes();
+
     return (
       <Provider store={store}>
         <MuiThemeProvider>
-          <Router history={history} >
-            <Switch>
-              {
-                routes.map((route, i) => (
-                  <RouteWithSubRoutes key={i} {...route} />
-                ))
-              }
-            </Switch>
-          </Router>
+          <div>
+            <Navigation />
+            <Router history={history} >
+              <Switch>
+                {
+                  routes.map((route, i) => (
+                    <RouteWithSubRoutes key={i} {...route} />
+                  ))
+                }
+              </Switch>
+            </Router>
+          </div>
         </MuiThemeProvider>
       </Provider>
     );

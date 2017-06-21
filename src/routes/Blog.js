@@ -1,15 +1,12 @@
 import MainLayout from 'components/layouts/MainLayout';
 import BlogPage from 'components/containers/BlogPage';
 
-const Index = {
+import About from 'components/ui/shared/About';
+
+const AboutPage = {
   path: '/',
-  component: BlogPage
+  component: About,
+  render: () => (<About />)
 };
 
-export default {
-  component: MainLayout,
-  childRoutes: [
-    Index
-  ]
-};
-
+export default AboutPage;
