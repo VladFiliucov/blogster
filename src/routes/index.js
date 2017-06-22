@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
 import BlogRoute from 'routes/Blog';
+import AboutRoute from 'routes/About';
 
 import BlogPage from 'components/containers/BlogPage';
 import BlogShow from 'components/containers/BlogShow';
 import MainLayout from 'components/layouts/MainLayout';
 import Navigation from 'components/ui/shared/Navigation';
-// import About from 'components/ui/shared/About';
 
 import { fetchPosts } from 'actions/Posts';
 import { fetchPost } from 'actions/Post';
@@ -35,6 +35,7 @@ class ApplicationRouter extends Component {
 }
 
 export default () => ([
+  AboutRoute,
   BlogRoute
 ]);
 
