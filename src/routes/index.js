@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
-import BlogRoute from 'routes/Blog';
+import BlogRoute from 'routes/BlogList';
 import AboutRoute from 'routes/About';
 
 import BlogPage from 'components/containers/BlogPage';
