@@ -1,9 +1,9 @@
 import BlogPage from 'components/containers/BlogPage';
 
-const BlogRoute = {
+const BlogsRoute = {
   exact: true,
   path: '/',
   component: BlogPage
 };
 
-export default BlogRoute;
+export default BlogsRoute;

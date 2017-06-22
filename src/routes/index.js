@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
-import BlogRoute from 'routes/BlogList';
+import BlogsRoute from 'routes/BlogList';
+import BlogRoute from 'routes/Blog';
 import AboutRoute from 'routes/About';
 
 import BlogPage from 'components/containers/BlogPage';
@@ -36,6 +37,7 @@ class ApplicationRouter extends Component {
 
 export default () => ([
   AboutRoute,
+  BlogsRoute,
   BlogRoute
 ]);
 
