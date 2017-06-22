@@ -1,14 +1,9 @@
-import React from 'react';
-
-import MainLayout from 'components/layouts/MainLayout';
 import BlogPage from 'components/containers/BlogPage';
 
-import About from 'components/ui/shared/About';
-
-const AboutPage = {
+const BlogRoute = {
+  exact: true,
   path: '/',
-  component: About,
-  render: () => (<About />)
+  component: BlogPage
 };
 
-export default AboutPage;
+export default BlogRoute;

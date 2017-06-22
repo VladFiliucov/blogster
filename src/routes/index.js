@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
-import AboutPage from 'routes/Blog';
+import BlogRoute from 'routes/Blog';
 
 import BlogPage from 'components/containers/BlogPage';
 import BlogShow from 'components/containers/BlogShow';
@@ -12,7 +12,6 @@ import Navigation from 'components/ui/shared/Navigation';
 import { fetchPosts } from 'actions/Posts';
 import { fetchPost } from 'actions/Post';
 
-// игнорируйте этот класс. Оставил что-б не забыть под какими путями все.
 class ApplicationRouter extends Component {
   render() {
     return (
@@ -36,5 +35,6 @@ class ApplicationRouter extends Component {
 }
 
 export default () => ([
-  AboutPage
-])
+  BlogRoute
+]);
+
