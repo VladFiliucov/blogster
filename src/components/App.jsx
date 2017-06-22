@@ -37,8 +37,9 @@ class App extends React.Component {
       <Provider store={store}>
         <MuiThemeProvider>
           <div>
-            <Navigation />
             <Router history={history} >
+              <div>
+            <Navigation />
               <Switch>
                 {
                   routes.map((route, i) => (
@@ -46,6 +47,7 @@ class App extends React.Component {
                   ))
                 }
               </Switch>
+              </div>
             </Router>
           </div>
         </MuiThemeProvider>
