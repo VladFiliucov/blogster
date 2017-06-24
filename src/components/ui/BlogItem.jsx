@@ -11,7 +11,7 @@ import 'components/styles/blog/BlogItem.css'
 
 const BlogItem = ({post, incrementLikes}) => (
   <div className="wrapper card radius shadowDepth1">
-    <Link  to={`/posts/${post.id}`} >
+    <Link  to={{pathname: '/posts', search: `postId=${post.id}`}} >
       <Image image={post.image} />
     </Link>
     <div className="card__content card__padding">
