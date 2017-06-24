@@ -10,6 +10,11 @@ import {
 } from 'react-router-dom';
 import createRoutes from 'routes';
 
+import { identity } from 'lodash/util';
+import { assign } from 'lodash/object';
+
+import { parse } from 'qs';
+
 import createHistory from 'history/createBrowserHistory';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Navigation from 'components/ui/shared/Navigation';
@@ -26,6 +31,36 @@ const history = createHistory();
 class App extends React.Component {
   render() {
     const routes = createRoutes();
+
+    history.listen((location, action) => {
+      // Create our own router state.
+      const state = { location, params: {}, routes: [], query: {}};
+
+      routes.some(route => {
+        // Check if url address we are going to corresponds path in one of our route objects.
+        const match = matchPath(location.pathname, route);
+
+        if (match) {
+          state.routes.push(route);
+          // This is not used yet as we are getting queries from location search.
+          assign(state.params, match.params);
+          // This will return object with params withour ? at start.
+          assign(state.query, parse(location.search.substr(1)));
+        }
+        return match;
+      });
+
+
+      // ???
+      const withoutScroll = (location.state || {}).withoutScroll;
+      const nonPush = action != 'PUSH';
+
+      prepareData(store, state).subscribe(
+        identity,
+        identity,
+        () => nonPush || withoutScroll || window.scrollTo(0,0)
+      );
+    });
 
     return (
       <Provider store={store}>
