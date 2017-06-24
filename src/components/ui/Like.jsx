@@ -9,7 +9,7 @@ const Like = ({likes, postId}) => (
   <div>
     {likes}
     <RaisedButton label="Like"
-      onClick={() => console.log("Increment Likes");}
+      onClick={() => console.log("Increment Likes")}
       className="like-button" />
   </div>
 );
