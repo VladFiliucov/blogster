@@ -9,7 +9,7 @@ import Like from './Like';
 
 import 'components/styles/blog/BlogItem.css'
 
-const BlogItem = ({post, incrementLikes}) => (
+const BlogItem = ({ post }) => (
   <div className="wrapper card radius shadowDepth1">
     <Link  to={{pathname: '/posts', search: `postId=${post.id}`}} >
       <Image image={post.image} />
@@ -19,7 +19,6 @@ const BlogItem = ({post, incrementLikes}) => (
       <TextBox>{post.text}</TextBox>
       <Like
         likes={post.details.likes}
-        incrementLikes={incrementLikes}
         postId={post.id} />
     </div>
   </div>
@@ -31,8 +30,7 @@ BlogItem.propTypes = {
     text: PropTypes.string,
     details: PostDetails.propTypes.details,
     image: Image.propTypes.image
-  }),
-  incrementLikes: PropTypes.func
+  })
 };
 
 export default BlogItem;
