@@ -55,7 +55,8 @@ class App extends React.Component {
       const withoutScroll = (location.state || {}).withoutScroll;
       const nonPush = action != 'PUSH';
 
-      prepareData(store, state).subscribe(
+      prepareData(store, state);
+      store.subscribe(
         identity,
         identity,
         () => nonPush || withoutScroll || window.scrollTo(0,0)
