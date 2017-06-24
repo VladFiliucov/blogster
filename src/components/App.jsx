@@ -32,7 +32,7 @@ class App extends React.Component {
   render() {
     const routes = createRoutes();
 
-    history.listen((location, action) => {
+    function historyCb(location, action) {
       // Create our own router state.
       const state = { location, params: {}, routes: [], query: {}};
 
@@ -60,7 +60,11 @@ class App extends React.Component {
         identity,
         () => nonPush || withoutScroll || window.scrollTo(0,0)
       );
-    });
+    }
+
+    history.listen(historyCb);
+
+    historyCb(window.location);
 
     return (
       <Provider store={store}>
