@@ -12,6 +12,6 @@ export default function (store, state) {
 
   map(
     prepareDataFns,
-    prepareData => prepareData(store, query, params, location)
+    prepareData => prepareData(store, state)
   );
 }
