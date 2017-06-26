@@ -8,6 +8,7 @@ import {
   Switch,
   matchPath
 } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
 import createRoutes from 'routes';
 
 import { identity } from 'lodash/util';
@@ -71,7 +72,7 @@ class App extends React.Component {
       <Provider store={store}>
         <MuiThemeProvider>
           <div>
-            <Router history={history} >
+            <ConnectedRouter history={history} >
               <div>
                 <Navigation />
                 <Switch>
@@ -82,7 +83,7 @@ class App extends React.Component {
                   }
                 </Switch>
               </div>
-            </Router>
+            </ConnectedRouter>
           </div>
         </MuiThemeProvider>
       </Provider>
