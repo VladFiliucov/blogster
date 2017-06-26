@@ -18,6 +18,11 @@ export default class BlogPage extends Component {
     super(props);
   }
 
+  handleClick() {
+    console.log("I was called");
+    // this.props.likePost(this.props.posts, 2)
+  }
+
   render() {
     return (
       <div className="container">
@@ -26,6 +31,9 @@ export default class BlogPage extends Component {
         {
           !this.props.isLoading && !this.props.error &&
             <div className="item column1">
+              <button onClick={this.handleClick}>
+                Like!
+              </button>
               <BlogList posts={this.props.posts} />
             </div>
         }
