@@ -1,4 +1,5 @@
-import { connect } from 'react-redux';
+import { connect, bindActionCreators } from 'react-redux';
+import { likePost } from 'actions/Posts';
 
 import BlogPage from 'components/ui/BlogPage';
 
@@ -8,4 +9,10 @@ const mapStateToProps = (state) => ({
   error: state.posts.error
 });
 
-export default connect(mapStateToProps)(BlogPage);
+function mapDispatchToProps(dispatch) {
+  return {
+    likePost: (posts, postId) => dispatch(likePost(posts, postId))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BlogPage);
