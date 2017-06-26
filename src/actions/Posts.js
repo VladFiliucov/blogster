@@ -18,6 +18,14 @@ const errorPosts = () => ({
   type: types.FETCH_POSTS_ERROR
 });
 
+export function likePost(posts, postId) {
+  return {
+    type: types.LIKE_POST,
+    posts,
+    postId
+  };
+}
+
 export function fetchPosts(searchTerm) {
   const querryObject = { searchTerm, BASE_URL: SERVER_ENDPOINT };
 
