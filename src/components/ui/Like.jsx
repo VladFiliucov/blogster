@@ -5,11 +5,11 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import RaisedButton from 'material-ui/RaisedButton';
 injectTapEventPlugin();
 
-const Like = ({likes, postId}) => (
+const Like = ({likes, postId, likePost, posts}) => (
   <div>
     {likes}
     <RaisedButton label="Like"
-      onClick={() => console.log("Increment Likes")}
+      onClick={() => likePost(posts, postId)}
       className="like-button" />
   </div>
 );

@@ -42,6 +42,6 @@ const incrementLikes = (posts, postId) => {
       .concat(posts.slice(postIndex + 1))
     };
   }
-  return updatedPosts;
+  return updatedPosts.posts;
 };
 

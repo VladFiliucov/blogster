@@ -1,4 +1,4 @@
-import { connect, bindActionCreators } from 'react-redux';
+import { connect } from 'react-redux';
 import { likePost } from 'actions/Posts';
 
 import BlogPage from 'components/ui/BlogPage';

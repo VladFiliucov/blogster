@@ -16,11 +16,12 @@ import 'components/styles/blog/BlogPage.css';
 export default class BlogPage extends Component {
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick() {
-    console.log("I was called");
-    // this.props.likePost(this.props.posts, 2)
+    console.log(this.props.posts);
+    this.props.likePost(this.props.posts, "2")
   }
 
   render() {
@@ -34,7 +35,7 @@ export default class BlogPage extends Component {
               <button onClick={this.handleClick}>
                 Like!
               </button>
-              <BlogList posts={this.props.posts} />
+              <BlogList posts={this.props.posts} likePost={this.props.likePost} />
             </div>
         }
             <div className="item column2">
