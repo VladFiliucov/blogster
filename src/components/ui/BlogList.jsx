@@ -9,7 +9,6 @@ const BlogList = (props) => (
       props.posts.map(post => <BlogItem
         key={post.id}
         post={post}
-        likePost={props.likePost}
         posts={props.posts} />)
     }
   </div>
