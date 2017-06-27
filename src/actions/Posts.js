@@ -20,9 +20,9 @@ const errorPosts = () => ({
 
 export function likePost(posts, postId) {
   return {
-    type: types.LIKE_POST,
     posts,
-    postId
+    postId,
+    type: types.LIKE_POST
   };
 }
 
