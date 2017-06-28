@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Image from './Image';
 import TextBox from './TextBox';
 import PostDetails from './PostDetails';
-import Like from './Like';
+import LikeContainer from 'components/containers/LikeContainer';
 
 import 'components/styles/blog/BlogItem.css'
 
@@ -17,7 +17,7 @@ const BlogItem = ({ post, posts}) => (
     <div className="card__content card__padding">
       <PostDetails details={post.details} />
       <TextBox>{post.text}</TextBox>
-      <Like
+      <LikeContainer
         likes={post.details.likes}
         postId={post.id}
         posts={posts} />
