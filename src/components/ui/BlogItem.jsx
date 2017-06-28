@@ -9,7 +9,7 @@ import LikeContainer from 'components/containers/LikeContainer';
 
 import 'components/styles/blog/BlogItem.css'
 
-const BlogItem = ({ post, posts}) => (
+const BlogItem = ({ post }) => (
   <div className="wrapper card radius shadowDepth1">
     <Link  to={{pathname: '/posts', search: `postId=${post.id}`}} >
       <Image image={post.image} />
@@ -19,8 +19,7 @@ const BlogItem = ({ post, posts}) => (
       <TextBox>{post.text}</TextBox>
       <LikeContainer
         likes={post.details.likes}
-        postId={post.id}
-        posts={posts} />
+        postId={post.id} />
     </div>
   </div>
 );

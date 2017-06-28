@@ -3,10 +3,12 @@ import { likePost } from 'actions/Posts';
 
 import Like from 'components/ui/Like';
 
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    likePost: () => dispatch(likePost(ownProps.posts, ownProps.postId))
-  };
-}
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  likePost: (posts) => dispatch(likePost(posts, ownProps.postId))
+});
 
-export default connect(null, mapDispatchToProps)(Like);
+const mapStateToProps = (state) => ({
+  posts: state.posts.posts
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Like);

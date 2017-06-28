@@ -15,7 +15,7 @@ class Like extends Component {
       <div>
         {this.props.likes}
         <RaisedButton label="Like"
-          onClick={() => this.props.likePost(this.props.posts, this.props.postId)}
+          onClick={() => this.props.likePost(this.props.posts)}
           className="like-button" />
       </div>
     );
