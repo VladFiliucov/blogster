@@ -18,7 +18,7 @@ export default class SearchBar extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.searchPosts(this.state.searchTerm, e);
+    this.props.fetchPosts(this.state.searchTerm);
     this.setState({ searchTerm: '' });
   }
 
