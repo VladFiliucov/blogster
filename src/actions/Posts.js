@@ -18,13 +18,13 @@ const errorPosts = () => ({
   type: types.FETCH_POSTS_ERROR
 });
 
-export const likePost = (posts, postId) => {
-  return {
+export const likePost = (posts, postId) => (
+  {
     posts,
     postId,
     type: types.LIKE_POST
-  };
-};
+  }
+);
 
 export function fetchPosts(searchTerm) {
   const querryObject = { searchTerm, BASE_URL: SERVER_ENDPOINT };
@@ -37,7 +37,7 @@ export function fetchPosts(searchTerm) {
       .then(response => {
         dispatch(recievePosts(response.data));
       })
-      .catch(error => {
+      .catch(() => {
         dispatch(errorPosts());
       });
   };

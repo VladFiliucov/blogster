@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import update from 'immutability-helper';
 
 import { SERVER_ENDPOINT } from 'constants/static/env';
@@ -8,35 +9,38 @@ import PieChart from 'components/ui/PieChart';
 import SearchBar from 'components/ui/SearchBar';
 import Spinner from 'components/ui/shared/Spinner';
 
-import { postsPath } from 'helpers/routes/posts.js'
+import { postsPath } from 'helpers/routes/posts'
 
 import 'components/styles/application/Base.css';
 import 'components/styles/blog/BlogPage.css';
 
-export default class BlogPage extends Component {
-  constructor(props) {
-    super(props);
-  }
+const searchPosts = () => (
+  console.log("search posts")
+);
 
-  render() {
-    return (
-      <div className="container">
-        { this.props.isLoading && <Spinner /> }
-        { this.props.error && <h1>Something wrong with {this.props.error}</h1> }
-        {
-          !this.props.isLoading && !this.props.error &&
-            <div className="item column1">
-              <BlogList posts={this.props.posts} />
-            </div>
-        }
-            <div className="item column2">
-              <SearchBar searchPosts={ this.searchPosts } {...this.props} />
-              <PieChart
-                columns={[ ...this.props.posts
-                  .map(post => [post.text, post.details.likes]) ]} />
-            </div>
+const BlogPage = (props) => (
+  <div className="container">
+    { props.isLoading && <Spinner /> }
+    { props.error && <h1>Something wrong with {props.error}</h1> }
+    {
+      !props.isLoading && !props.error &&
+        <div className="item column1">
+          <BlogList posts={props.posts} />
+        </div>
+    }
+    <div className="item column2">
+      <SearchBar searchPosts={ this.searchPosts } {...props} />
+      <PieChart
+        columns={[ ...props.posts
+          .map(post => [post.text, post.details.likes]) ]} />
       </div>
-    );
-  }
-}
+    </div>
+);
 
+BlogPage.propTypes = {
+  isLoading: PropTypes.bool,
+  error: PropTypes.bool,
+  posts: PropTypes.array
+};
+
+export default BlogPage;
