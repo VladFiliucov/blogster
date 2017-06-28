@@ -8,6 +8,7 @@ import SearchContainer from 'components/containers/SearchContainer';
 import BlogList from 'components/ui/BlogList';
 import PieChart from 'components/ui/PieChart';
 import Spinner from 'components/ui/shared/Spinner';
+import ErrorMessage from 'components/ui/shared/ErrorMessage';
 
 import { postsPath } from 'helpers/routes/posts'
 
@@ -17,7 +18,7 @@ import 'components/styles/blog/BlogPage.css';
 const BlogPage = (props) => (
   <div className="container">
     { props.isLoading && <Spinner /> }
-    { props.error && <h1>Something wrong with {props.error}</h1> }
+    { props.error && <ErrorMessage /> }
     {
       !props.isLoading && !props.error &&
         <div className="item column1">
