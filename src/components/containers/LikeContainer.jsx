@@ -3,9 +3,9 @@ import { likePost } from 'actions/Posts';
 
 import Like from 'components/ui/Like';
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, ownProps) {
   return {
-    likePost: (posts, postId) => dispatch(likePost(posts, postId))
+    likePost: () => dispatch(likePost(ownProps.posts, ownProps.postId))
   };
 }
 
