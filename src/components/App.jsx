@@ -34,25 +34,20 @@ class App extends React.Component {
     const routes = createRoutes();
 
     function historyCb(location, action) {
-      // Create our own router state.
       const state = { location, params: {}, routes: [], query: {}};
 
       routes.some(route => {
-        // Check if url address we are going to corresponds path in one of our route objects.
         const match = matchPath(location.pathname, route);
 
         if (match) {
           state.routes.push(route);
-          // This is not used yet as we are getting queries from location search.
           assign(state.params, match.params);
-          // This will return object with params withour ? at start.
           assign(state.query, parse(location.search.substr(1)));
         }
         return match;
       });
 
 
-      // ???
       const withoutScroll = (location.state || {}).withoutScroll;
       const nonPush = action != 'PUSH';
 
