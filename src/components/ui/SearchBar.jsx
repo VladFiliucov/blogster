@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { push } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
+
 import TextField from 'material-ui/TextField';
 
 export default class SearchBar extends Component {
@@ -18,7 +21,10 @@ export default class SearchBar extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    const history = createHistory();
+
     this.props.fetchPosts(this.state.searchTerm);
+    history.push({pathname: '/', search: this.state.searchTerm});
     this.setState({ searchTerm: '' });
   }
 
