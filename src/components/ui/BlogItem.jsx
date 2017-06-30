@@ -17,9 +17,7 @@ const BlogItem = ({ post }) => (
     <div className="card__content card__padding">
       <PostDetails details={post.details} />
       <TextBox>{post.text}</TextBox>
-      <LikeContainer
-        likes={post.details.likes}
-        postId={post.id} />
+      <LikeContainer postId={post.id} />
     </div>
   </div>
 );

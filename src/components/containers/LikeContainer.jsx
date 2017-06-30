@@ -11,4 +11,11 @@ const mapStateToProps = (state) => ({
   posts: state.posts.posts
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Like);
+const mergeProps = (stateProps, dispatchProps, ownProps) => (
+  Object.assign({}, ownProps, {
+    likes: stateProps.posts
+      .find(post => post.id == ownProps.postId).details.likes
+  })
+);
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Like);
