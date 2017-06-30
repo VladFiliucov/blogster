@@ -14,7 +14,8 @@ const mapStateToProps = (state) => ({
 const mergeProps = (stateProps, dispatchProps, ownProps) => (
   Object.assign({}, ownProps, {
     likes: stateProps.posts
-      .find(post => post.id == ownProps.postId).details.likes
+      .find(post => post.id == ownProps.postId).details.likes,
+    likePost: () => dispatchProps.likePost(stateProps.posts, ownProps.postId)
   })
 );
 
