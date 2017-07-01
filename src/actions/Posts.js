@@ -3,6 +3,9 @@ import axios from 'axios';
 import { SERVER_ENDPOINT } from 'constants/static/env';
 import { postsPath } from 'helpers/routes/posts.js';
 
+import { push } from 'react-router-redux';
+import history from 'routes/history';
+
 import * as types from 'constants/actionTypes/PostsActionTypes';
 
 const requestPosts = () => ({
@@ -36,6 +39,9 @@ export function fetchPosts(searchTerm) {
     .get(postsPath(querryObject))
       .then(response => {
         dispatch(recievePosts(response.data));
+      })
+      .then(() => {
+        history.push({pathname: '/', search: searchTerm});
       })
       .catch(() => {
         dispatch(errorPosts());

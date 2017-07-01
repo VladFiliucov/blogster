@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { push } from 'react-router-redux';
-import history from 'routes/history';
-
 import TextField from 'material-ui/TextField';
 
 export default class SearchBar extends Component {
@@ -23,8 +20,6 @@ export default class SearchBar extends Component {
     e.preventDefault();
 
     this.props.fetchPosts(this.state.searchTerm);
-    history.push({pathname: '/', search: this.state.searchTerm});
-    this.setState({ searchTerm: '' });
   }
 
   render() {
