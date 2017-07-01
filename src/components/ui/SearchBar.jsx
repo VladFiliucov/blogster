@@ -18,7 +18,6 @@ export default class SearchBar extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
     this.props.fetchPosts(this.state.searchTerm);
   }
 
@@ -40,6 +39,6 @@ export default class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  searchPosts: PropTypes.func
+  fetchPosts: PropTypes.func
 };
 

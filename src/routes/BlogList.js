@@ -5,9 +5,13 @@ const BlogsRoute = {
   exact: true,
   path: '/',
   component: BlogPage,
-  prepareData: (store) => (
-    store.dispatch(fetchPosts())
-  )
+  prepareData: (store, state) => {
+    if (state.location.search) {
+      store.dispatch(fetchPosts(state.location.search))
+    } else {
+      store.dispatch(fetchPosts())
+    }
+  }
 };
 
 export default BlogsRoute;
