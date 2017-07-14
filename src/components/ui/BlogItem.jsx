@@ -13,7 +13,7 @@ import 'components/styles/blog/BlogItem.css'
 
 const BlogItem = ({ post }) => (
   <div className="wrapper card radius shadowDepth1">
-    <Link  to={postUrlObject(post.id)} >
+    <Link  to={post.postUrl} >
       <Image image={post.image} />
     </Link>
     <div className="card__content card__padding">
