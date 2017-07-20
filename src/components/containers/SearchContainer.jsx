@@ -2,16 +2,16 @@ import { connect } from 'react-redux';
 import { fetchPosts } from 'actions/Posts';
 import { withRouter } from 'react-router-dom';
 import history from 'routes/history';
-import { push } from 'react-router-redux';
+import { stringify } from 'qs';
 
 import SearchBar from 'components/ui/SearchBar';
 
 function mapDispatchToProps(dispatch) {
   return {
     fetchPosts: (searchTerm) => {
-      dispatch(push({pathname: '/', search: searchTerm}));
+      history.push({pathname: '/', search: stringify({q: searchTerm})});
     }
   };
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(SearchBar));
+export default connect(null, mapDispatchToProps)(SearchBar);
