@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import RaisedButton from 'material-ui/RaisedButton';
 injectTapEventPlugin();
 
-const Like = ({likes, incrementLikes, postId}) => (
-  <div>
-    {likes}
-    <RaisedButton label="Like"
-      onClick={() => incrementLikes(postId)}
-      className="like-button" />
-  </div>
-);
+class Like extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        {this.props.likes}
+        <RaisedButton label="Like"
+          onClick={() => this.props.likePost()}
+          className="like-button" />
+      </div>
+    );
+  }
+}
 
 Like.defaultProps = {
   likes: 0
@@ -20,7 +28,6 @@ Like.defaultProps = {
 
 Like.propTypes = {
   likes: PropTypes.number.isRequired,
-  incrementLikes: PropTypes.func.isRequired,
   postId: PropTypes.number
 };
 

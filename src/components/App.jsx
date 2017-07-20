@@ -1,42 +1,94 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { Provider } from 'react-redux';
 import {
-  BrowserRouter as Router,
-  Route
+  Router,
+  Route,
+  Switch,
+  matchPath
 } from 'react-router-dom';
+import createRoutes from 'routes';
 
+import { identity } from 'lodash/util';
+import { assign } from 'lodash/object';
+
+import { parse } from 'qs';
+
+import createHistory from 'history/createBrowserHistory';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-import BlogPage from 'components/containers/BlogPage';
-import BlogShow from 'components/containers/BlogShow';
-import MainLayout from 'components/layouts/MainLayout';
 import Navigation from 'components/ui/shared/Navigation';
-import About from 'components/ui/shared/About';
+
+import RouteWithSubRoutes from 'helpers/routes/RouteWithSubRoutes';
+
+import DevTools from 'components/containers/DevTools';
+
+import store from 'store';
+import prepareData from 'helpers/prepareData';
+
+import history from 'routes/history';
 
 class App extends React.Component {
   render() {
+    const routes = createRoutes();
+
+    function historyCb(location, action) {
+      const state = { location, params: {}, routes: [], query: {}};
+
+      routes.some(route => {
+        const match = matchPath(location.pathname, route);
+
+        if (match) {
+          state.routes.push(route);
+          assign(state.params, match.params);
+          assign(state.query, parse(location.search.substr(1)));
+        }
+        return match;
+      });
+
+
+      const withoutScroll = (location.state || {}).withoutScroll;
+      const nonPush = action != 'PUSH';
+
+      prepareData(store, state);
+      store.subscribe(
+        identity,
+        identity,
+        () => nonPush || withoutScroll || window.scrollTo(0,0)
+      );
+    }
+
+    history.listen(historyCb);
+
+    historyCb(window.location);
+
     return (
-      <MuiThemeProvider>
-        <Router>
-          <MainLayout>
-            <Navigation />
-            <div>
-              <Route exact path="/" render={({match, location, history}) => (
-                <BlogPage match={match}
-                  location={location}
-                  history={history} />
-              ) } />
-              <Route exact path="/about" component={ About } />
-              <Route exact path="/posts/:postId" render={({match}) => (
-                <BlogShow postId={match.params.postId} />
-              )} />
-            </div>
-          </MainLayout>
-        </Router>
-      </MuiThemeProvider>
+      <Provider store={store}>
+        <MuiThemeProvider>
+          <div>
+            <Router history={history} >
+              <div>
+                <Navigation />
+                <Switch>
+                  {
+                    routes.map((route, i) => (
+                      <RouteWithSubRoutes key={i} {...route} />
+                    ))
+                  }
+                </Switch>
+              </div>
+            </Router>
+          </div>
+        </MuiThemeProvider>
+      </Provider>
     );
   }
 }
+
+ReactDOM.render(
+  <DevTools store={store} />,
+  document.getElementById('devtools')
+);
 
 export default App;
 

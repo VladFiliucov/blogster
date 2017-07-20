@@ -8,8 +8,8 @@ const BlogList = (props) => (
     {
       props.posts.map(post => <BlogItem
         key={post.id}
-        post={post}
-        incrementLikes={props.incrementLikes} />)
+        post={post} />
+      )
     }
   </div>
 );
