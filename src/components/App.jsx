@@ -26,7 +26,7 @@ import DevTools from 'components/containers/DevTools';
 import store from 'store';
 import prepareData from 'helpers/prepareData';
 
-const history = createHistory();
+import history from 'routes/history';
 
 class App extends React.Component {
   render() {
