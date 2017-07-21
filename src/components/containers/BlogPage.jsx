@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import update from 'immutability-helper';
+import { filter } from 'lodash/collection';
+import { assign } from 'lodash';
 
 import { postUrlObject } from 'helpers/routes/post';
-import { assign } from 'lodash';
 import BlogPage from 'components/ui/BlogPage';
 
 const mapStateToProps = (state) => ({
@@ -16,10 +16,21 @@ const mapStateToProps = (state) => ({
   error: state.posts.error
 });
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  return ownProps.searchTerm.q
-    ? Object.assign({}, ownProps, { posts: stateProps.posts.filter(post => { return post.text.toLowerCase().indexOf(ownProps.searchTerm.q.toLowerCase()) > - 1; }) })
-    : Object.assign({}, ownProps, { posts: stateProps.posts })
-};
+const mergeProps = (stateProps, dispatchProps, ownProps) => (
+  Object.assign(
+    {},
+    ownProps,
+    {
+      posts: ownProps.searchTerm.q ?
+      filter(
+        stateProps.posts,
+        ({ text }) => (
+          text.toLowerCase().indexOf(ownProps.searchTerm.q.toLowerCase()) > - 1
+        )
+      )
+      : stateProps.posts
+    }
+  )
+);
 
 export default connect(mapStateToProps, null, mergeProps)(BlogPage);
