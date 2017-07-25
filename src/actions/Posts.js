@@ -5,7 +5,7 @@ import { API_CALL } from 'middleware/API';
 export function fetchPosts() {
   return {
     [API_CALL]: {
-      endpoint: '/',
+      endpoint: '/posts',
       method: 'GET',
       query: {},
       types: [
@@ -24,5 +24,4 @@ export const likePost = (posts, postId) => (
     type: types.LIKE_POST
   }
 );
-
 
