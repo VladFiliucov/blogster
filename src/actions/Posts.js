@@ -1,8 +1,10 @@
 import * as types from 'constants/actionTypes/PostsActionTypes';
 
+import { API_CALL } from 'middleware/API';
+
 function fetchPosts() {
   return {
-    API_CALL: {
+    [API_CALL]: {
       endpoint: '/',
       method: 'GET',
       query: {},

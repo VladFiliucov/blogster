@@ -20,3 +20,5 @@ function APICall({ endpoint, method, query, payload }) {
     ));
   });
 }
+
+export const API_CALL = 'API_CALL';
