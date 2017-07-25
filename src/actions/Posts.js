@@ -1,24 +1,19 @@
-import axios from 'axios';
-
-import { SERVER_ENDPOINT } from 'constants/static/env';
-import { postsPath } from 'helpers/routes/posts.js';
-
-import { push } from 'react-router-redux';
-
 import * as types from 'constants/actionTypes/PostsActionTypes';
 
-const requestPosts = () => ({
-  type: types.FETCH_POSTS_REQUEST
-});
-
-const recievePosts = (response) => ({
-  response,
-  type: types.FETCH_POSTS_SUCCESS
-});
-
-const errorPosts = () => ({
-  type: types.FETCH_POSTS_ERROR
-});
+function fetchPosts() {
+  return {
+    API_CALL: {
+      endpoint: '/',
+      method: 'GET',
+      query: {},
+      types: [
+        types.FETCH_POSTS_REQUEST,
+        types.FETCH_POSTS_SUCCESS,
+        types.FETCH_POSTS_ERROR
+      ]
+    }
+  };
+}
 
 export const likePost = (posts, postId) => (
   {
@@ -27,6 +22,13 @@ export const likePost = (posts, postId) => (
     type: types.LIKE_POST
   }
 );
+
+
+
+
+import { SERVER_ENDPOINT } from 'constants/static/env';
+import { postsPath } from 'helpers/routes/posts.js';
+
 
 export function fetchPosts(searchTerm) {
   const querryObject = { searchTerm, BASE_URL: SERVER_ENDPOINT };
