@@ -2,7 +2,7 @@ import * as types from 'constants/actionTypes/PostsActionTypes';
 
 import { API_CALL } from 'middleware/API';
 
-function fetchPosts() {
+export function fetchPosts() {
   return {
     [API_CALL]: {
       endpoint: '/',
@@ -25,27 +25,4 @@ export const likePost = (posts, postId) => (
   }
 );
 
-
-
-
-import { SERVER_ENDPOINT } from 'constants/static/env';
-import { postsPath } from 'helpers/routes/posts.js';
-
-
-export function fetchPosts(searchTerm) {
-  const querryObject = { searchTerm, BASE_URL: SERVER_ENDPOINT };
-
-  return (dispatch) => {
-    dispatch(requestPosts());
-
-    return axios
-    .get(postsPath(querryObject))
-      .then(response => {
-        dispatch(recievePosts(response.data));
-      })
-      .catch(() => {
-        dispatch(errorPosts());
-      });
-  };
-}
 
