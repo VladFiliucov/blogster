@@ -1,7 +1,6 @@
 import React from 'react';
 import BlogPage from 'components/containers/BlogPage';
 import { fetchPosts } from 'actions/Posts';
-import { push } from 'react-router-redux';
 import { parse } from 'qs';
 
 const BlogsRoute = {
