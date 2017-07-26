@@ -17,9 +17,8 @@ export function fetchPosts() {
   };
 }
 
-export const likePost = (posts, postId) => (
+export const likePost = (postId) => (
   {
-    posts,
     postId,
     type: types.LIKE_POST
   }
