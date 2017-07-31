@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "start-dev": "node ./initializers/server/server.js"
   },
   "repository": {
     "type": "git",
