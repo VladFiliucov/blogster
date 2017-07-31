@@ -4,7 +4,7 @@ import { likePost } from 'actions/Posts';
 import Like from 'components/ui/Like';
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  likePost: (posts) => dispatch(likePost(posts, ownProps.postId))
+  likePost: () => dispatch(likePost(ownProps.postId))
 });
 
 const mapStateToProps = (state) => ({
@@ -15,7 +15,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => (
   Object.assign({}, ownProps, {
     likes: stateProps.posts
       .find(post => post.id == ownProps.postId).details.likes,
-    likePost: () => dispatchProps.likePost(stateProps.posts, ownProps.postId)
+    likePost: () => dispatchProps.likePost(ownProps.postId)
   })
 );
 

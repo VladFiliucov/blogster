@@ -1,37 +1,18 @@
-import axios from 'axios';
-
-import { SERVER_ENDPOINT } from 'constants/static/env';
-import { postPath } from 'helpers/routes/post.js';
-
 import * as types from 'constants/actionTypes/PostActionTypes';
 
-const requestPost = (id) => ({
-  id,
-  type: types.FETCH_POST_REQUEST
-});
-
-const receivePost = (response) => ({
-  response,
-  type: types.FETCH_POST_SUCCESS
-});
-
-const errorPost = () => ({
-  type: types.FETCH_POST_ERROR
-});
+import { API_CALL } from 'middleware/API';
 
 export function fetchPost(id) {
-  const querryObject = { id, BASE_URL: SERVER_ENDPOINT };
-
-  return (dispatch) => {
-    dispatch(requestPost(id));
-
-    return axios
-      .get(postPath(querryObject))
-      .then(response => {
-        dispatch(receivePost(response.data));
-      })
-      .catch(error => {
-        dispatch(errorPost());
-      });
+  return {
+    [API_CALL]: {
+      endpoint: `/posts/${id}`,
+      method: 'GET',
+      query: {},
+      types: [
+        types.FETCH_POST_REQUEST,
+        types.FETCH_POST_SUCCESS,
+        types.FETCH_POST_ERROR
+      ]
+    }
   };
 }

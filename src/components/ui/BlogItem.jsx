@@ -13,14 +13,18 @@ import 'components/styles/blog/BlogItem.css'
 
 const BlogItem = ({ post }) => (
   <div className="wrapper card radius shadowDepth1">
-    <Link  to={post.postUrl} >
-      <Image image={post.image} />
-    </Link>
-    <div className="card__content card__padding">
-      <PostDetails details={post.details} />
-      <TextBox>{post.text}</TextBox>
-      <LikeContainer postId={post.id} />
-    </div>
+    { post &&
+        <div>
+          <Link  to={post.postUrl} >
+            <Image image={post.image} />
+          </Link>
+          <div className="card__content card__padding">
+            <PostDetails details={post.details} />
+            <TextBox>{post.text}</TextBox>
+            <LikeContainer postId={post.id} />
+          </div>
+        </div>
+    }
   </div>
 );
 
