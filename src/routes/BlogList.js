@@ -6,15 +6,15 @@ import { parse } from 'qs';
 const BlogsRoute = {
   exact: true,
   path: '/',
-  prepareData: (store, state) => {
+  prepareData(store, state) {
     if (state.location.search) {
-      store.dispatch(
+      return store.dispatch(
         fetchPosts(new URLSearchParams(state.location.search)
           .get('q')
         )
       );
     } else {
-      store.dispatch(fetchPosts());
+      return store.dispatch(fetchPosts());
     }
   },
   render: ({ location }) => (

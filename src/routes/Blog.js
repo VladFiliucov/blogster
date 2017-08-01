@@ -7,10 +7,10 @@ import { fetchPost } from 'actions/Post';
 const BlogRoute = {
   exact: true,
   path: '/posts',
-  prepareData: (store) => (
-    store.dispatch(
-      fetchPost(new URLSearchParams(location.search).get('postId')))
-  ),
+  prepareData(store) {
+    return store.dispatch(
+      fetchPost(new URLSearchParams(location.search).get('postId')));
+  },
   render: ({ location }) => (
     <BlogShow postId={new URLSearchParams(location.search).get('postId')} />
   )
