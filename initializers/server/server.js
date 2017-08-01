@@ -7,11 +7,6 @@ require.extensions['.css'] = () => {
   return;
 };
 
-const webpack = require('webpack');
-const webpackDevServer = require('webpack-dev-server');
-
-const config = require('../../webpack.config.js');
-
 const host = 'localhost';
 const port = 9090;
 
@@ -24,8 +19,27 @@ application.use(express.static('dist/pictures'));
 application.set('views', __dirname);
 application.set('view engine', 'ejs');
 
+const webpack = require('webpack');
+const config = require('../../webpack.config.js').default;
+const webpackDev = require('webpack-dev-middleware');
+const webpackHot = require('webpack-hot-middleware');
+const compiler = webpack(config);
+
+application.use(
+  webpackDev(
+    compiler,
+    {
+      hot: true,
+      publicPath: config.output.publicPath,
+      stats: { colors: true }
+    }
+  )
+);
+
+application.use(webpackHot(compiler));
+
 application.get('*', require('./render').default);
 
 application.listen(port, function() {
-  console.log('SERVER listening on ', port); 
+  console.log('SERVER listening on ', port);
 });
