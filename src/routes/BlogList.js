@@ -7,11 +7,9 @@ const BlogsRoute = {
   exact: true,
   path: '/',
   prepareData(store, state) {
-    if (state.location.search) {
+    if (state.query.q) {
       return store.dispatch(
-        fetchPosts(new URLSearchParams(state.location.search)
-          .get('q')
-        )
+        fetchPosts(state.query.q)
       );
     } else {
       return store.dispatch(fetchPosts());

@@ -23,10 +23,12 @@ import RouteWithSubRoutes from 'helpers/routes/RouteWithSubRoutes';
 
 import DevTools from 'components/containers/DevTools';
 
-import store from 'store';
+import createStore from 'store';
 import prepareData from 'helpers/prepareData';
 
 import history from 'routes/history';
+
+const store = createStore(window.__INITIAL_STATE__);
 
 class App extends React.Component {
   render() {
@@ -87,7 +89,10 @@ class App extends React.Component {
 
 ReactDOM.render(
   <DevTools store={store} />,
-  document.getElementById('devtools')
+  document.getElementById('devtools'),
+  () => {
+    delete window.__INITIAL_STATE__;
+  }
 );
 
 export default App;

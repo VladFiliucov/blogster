@@ -1,20 +1,28 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
-import { StaticRouter } from 'react-router';
+import { StaticRouter as Router, Switch } from 'react-router-dom';
 import { matchPath } from 'react-router-dom';
 import { assign } from 'lodash/object';
+import { compact } from 'lodash/array';
 import { parse } from 'qs';
 
-import store from 'store';
-let createRoutes = require('routes').default;
+import createStore from 'store';
+
+import createRoutes from 'routes';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Navigation from 'components/ui/shared/Navigation';
+import RouteWithSubRoutes from 'helpers/routes/RouteWithSubRoutes';
 
 import prepareData from 'helpers/prepareData';
 
 export default (req, res) => {
-  const routes = createRoutes();
+  const context = {};
 
-  const state = {
+  const routes = createRoutes();
+  const store = createStore();
+
+  let state = {
     params: {},
     routes: [],
     query: {}
@@ -26,19 +34,49 @@ export default (req, res) => {
     if (match)
     {
       state.routes.push(route);
-      assign(state.params, match.params);
       assign(state.query, req.query);
     }
     return match;
   });
 
-  Promise.all([prepareData(store, state)]).then(() => {
+
+  Promise.all(
+    compact(
+      state.routes.map(route => (
+        route.prepareData(store, state)
+      ))
+    )
+  ).then(() => {
     const initialState = JSON.stringify(store.getState());
+
+    const content = ReactDOMServer.renderToString(
+      <Provider store={store}>
+        <MuiThemeProvider>
+          <div>
+            <Router location={req.url} context={context} >
+              <div>
+                <Navigation />
+                <Switch>
+                  {
+                    routes.map((route, i) => (
+                      <RouteWithSubRoutes key={i} {...route} />
+                    ))
+                  }
+                </Switch>
+              </div>
+            </Router>
+          </div>
+        </MuiThemeProvider>
+      </Provider>
+    );
 
     res.status(200);
     res.render(
       'index',
-      { initialState }
+      { initialState, content }
     );
-  });
+  })
+    .catch(error => {
+      console.log("The error is", error);
+    }) ;
 };
