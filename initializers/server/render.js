@@ -43,7 +43,7 @@ export default (req, res) => {
   Promise.all(
     compact(
       state.routes.map(route => (
-        route.prepareData(store, state)
+        !!route.prepareData && route.prepareData(store, state)
       ))
     )
   ).then(() => {
