@@ -16,20 +16,21 @@ import RouteWithSubRoutes from 'helpers/routes/RouteWithSubRoutes';
 
 import prepareData from 'helpers/prepareData';
 
+const store = createStore();
+
 export default (req, res) => {
   const context = {};
 
   const routes = createRoutes();
-  const store = createStore();
 
-  let state = {
+  const state = {
     params: {},
     routes: [],
     query: {}
   };
 
   routes.some(route => {
-    const match = matchPath(req.url, route);
+    const match = matchPath(req.url, route.path);
 
     if (match)
     {
