@@ -6,8 +6,8 @@ import { fetchPosts } from 'actions/Posts';
 import { fetchPost } from 'actions/Post';
 
 export default () => ([
-  BlogRoute,
   AboutRoute,
+  BlogRoute,
   BlogsRoute
 ]);
 
