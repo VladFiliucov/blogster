@@ -29,41 +29,33 @@ import prepareData from 'helpers/prepareData';
 import history from 'routes/history';
 
 const store = createStore(window.__INITIAL_STATE__);
+const routes = createRoutes();
+
+function historyCb(location, action) {
+  const state = { location, params: {}, routes: [], query: {}};
+
+  routes.some(route => {
+    const match = matchPath(location.pathname, route.path);
+
+    if (match) {
+      state.routes.push(route);
+      assign(state.params, match.params);
+      assign(state.query, parse(location.search.substr(1)));
+
+      prepareData(store, state);
+    }
+    return match;
+  });
+  return true;
+}
+
+history.listen(historyCb);
+
+historyCb(window.location);
+
 
 class App extends React.Component {
   render() {
-    const routes = createRoutes();
-
-    function historyCb(location, action) {
-      const state = { location, params: {}, routes: [], query: {}};
-
-      routes.some(route => {
-        const match = matchPath(location.pathname, route);
-
-        if (match) {
-          state.routes.push(route);
-          assign(state.params, match.params);
-          assign(state.query, parse(location.search.substr(1)));
-        }
-        return match;
-      });
-
-
-      const withoutScroll = (location.state || {}).withoutScroll;
-      const nonPush = action != 'PUSH';
-
-      prepareData(store, state);
-      store.subscribe(
-        identity,
-        identity,
-        () => nonPush || withoutScroll || window.scrollTo(0,0)
-      );
-    }
-
-    history.listen(historyCb);
-
-    historyCb(window.location);
-
     return (
       <Provider store={store}>
         <MuiThemeProvider>
@@ -89,10 +81,7 @@ class App extends React.Component {
 
 ReactDOM.render(
   <DevTools store={store} />,
-  document.getElementById('devtools'),
-  () => {
-    delete window.__INITIAL_STATE__;
-  }
+  document.getElementById('devtools')
 );
 
 export default App;
