@@ -5,6 +5,7 @@ import { parse } from 'qs';
 
 const BlogsRoute = {
   exact: true,
+  strict: true,
   path: '/',
   prepareData(store, state) {
     if (state.query.q) {

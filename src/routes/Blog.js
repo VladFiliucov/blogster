@@ -10,6 +10,7 @@ import { postUrlObject } from 'helpers/routes/post';
 
 const BlogRoute = {
   exact: true,
+  strict: true,
   path: postUrlObject(),
   prepareData: (store, state) => {
     if (initialLoad()) return;

@@ -6,7 +6,7 @@ const postPath = ({ BASE_URL, id }) => {
 
 const postUrlObject = (postId) => (
   {
-    pathname: '/post',
+    pathname: '/posts',
     search: stringify(postId)
   }
 );
