@@ -30,7 +30,7 @@ export default (req, res) => {
   };
 
   routes.some(route => {
-    const match = matchPath(req.url, route.path);
+    const match = matchPath(req.url, route);
 
     if (match)
     {
