@@ -81,7 +81,10 @@ class App extends React.Component {
 
 ReactDOM.render(
   <DevTools store={store} />,
-  document.getElementById('devtools')
+  document.getElementById('devtools'),
+  () => {
+    delete window.__INITIAL_STATE__;
+  }
 );
 
 export default App;
