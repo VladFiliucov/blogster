@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
-import { StaticRouter as Router, Switch } from 'react-router-dom';
-import { matchPath } from 'react-router-dom';
+import { StaticRouter as Router, Switch, matchPath } from 'react-router-dom';
 import { assign } from 'lodash/object';
 import { compact } from 'lodash/array';
 import { parse } from 'qs';
@@ -16,12 +15,11 @@ import RouteWithSubRoutes from 'helpers/routes/RouteWithSubRoutes';
 
 import prepareData from 'helpers/prepareData';
 
-const store = createStore();
-
 export default (req, res) => {
   const context = {};
 
   const routes = createRoutes();
+  const store = createStore();
 
   const state = {
     params: {},
@@ -35,7 +33,9 @@ export default (req, res) => {
     if (match)
     {
       state.routes.push(route);
+      assign(state.params, match.params)
       assign(state.query, req.query);
+      console.log("ROUTER STATE", state);
     }
     return match;
   });
@@ -59,7 +59,7 @@ export default (req, res) => {
                 <Navigation />
                 <Switch>
                   {
-                    routes.map((route, i) => (
+                    state.routes.map((route, i) => (
                       <RouteWithSubRoutes key={i} {...route} />
                     ))
                   }

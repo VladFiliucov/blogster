@@ -35,24 +35,22 @@ function historyCb(location, action) {
   const state = { location, params: {}, routes: [], query: {}};
 
   routes.some(route => {
-    const match = matchPath(location.pathname, route.path);
+    const match = matchPath(location.pathname, route);
 
     if (match) {
       state.routes.push(route);
       assign(state.params, match.params);
       assign(state.query, parse(location.search.substr(1)));
-
-      prepareData(store, state);
     }
     return match;
   });
-  return true;
+
+  prepareData(store, state);
 }
 
 history.listen(historyCb);
 
 historyCb(window.location);
-
 
 class App extends React.Component {
   render() {

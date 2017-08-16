@@ -2,14 +2,14 @@ import { connect } from 'react-redux';
 import { filter } from 'lodash/collection';
 import { assign } from 'lodash';
 
-import { postUrlObject } from 'helpers/routes/post';
+import { postUrl } from 'helpers/routes/post';
 import BlogPage from 'components/ui/BlogPage';
 
 const mapStateToProps = (state) => ({
   posts: state.posts.posts
     .map(post => assign(
       {}, post, {
-        postUrl: postUrlObject(post.id)
+        postUrl: postUrl(post.id)
       })
     ),
   isLoading: state.posts.isLoading,
