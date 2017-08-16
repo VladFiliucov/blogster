@@ -6,27 +6,26 @@ import initialLoad from 'helpers/initialLoad';
 
 import BlogShow from 'components/containers/BlogShow';
 import { fetchPost } from 'actions/Post';
-import { postUrlObject } from 'helpers/routes/post';
+import { postUrl } from 'helpers/routes/post';
 
 const BlogRoute = {
   exact: true,
   strict: true,
-  path: postUrlObject(),
+  path: postUrl(),
   prepareData: (store, state) => {
     if (initialLoad()) return;
 
-    const { postId } = state.query;
+    const { postId } = state.params;
 
     if (!!postId) return store.dispatch(fetchPost(postId));
   },
-  render: ({ location }) => {
-    console.log("GOT HERE");
-    return <BlogShow postId={ parse(location.search.substr(1).postId) } />
+  render: ({ match }) => {
+    return <BlogShow postId={ match.params.postId } />;
   }
 };
 
 BlogRoute.propTypes = {
-  location: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 export default BlogRoute;
