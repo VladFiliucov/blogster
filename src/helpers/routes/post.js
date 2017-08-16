@@ -4,11 +4,6 @@ const postPath = ({ BASE_URL, id }) => {
   return `${BASE_URL}/posts/${id}`;
 };
 
-const postUrlObject = (postId) => (
-  {
-    pathname: '/posts',
-    search: stringify(postId)
-  }
-);
+const postUrl = (postId = ':postId') => `/posts/${postId}`;
 
-export { postPath, postUrlObject };
+export { postPath, postUrl };
