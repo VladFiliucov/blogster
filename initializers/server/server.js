@@ -11,11 +11,12 @@ const host = 'localhost';
 const port = 9090;
 
 const express = require('express');
+const morgan = require('morgan');
 
 const application = express();
 
 application.use(express.static('dist'));
-
+application.use(morgan('dev'));
 application.set('views', __dirname);
 application.set('view engine', 'ejs');
 
