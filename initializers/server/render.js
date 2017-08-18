@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import Helmet from 'react-helmet';
 import { Provider } from 'react-redux';
 import { StaticRouter as Router, Switch, matchPath } from 'react-router-dom';
 import { assign } from 'lodash/object';
@@ -70,10 +71,12 @@ export default (req, res) => {
       </Provider>
     );
 
+    const head = Helmet.rewind();
+
     res.status(200);
     res.render(
       'index',
-      { initialState, content }
+      { initialState, content, head }
     );
   })
     .catch(error => {
