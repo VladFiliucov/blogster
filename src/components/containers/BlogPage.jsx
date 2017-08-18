@@ -3,7 +3,7 @@ import { filter } from 'lodash/collection';
 import { assign } from 'lodash';
 
 import { postUrl } from 'helpers/routes/post';
-import BlogPage from 'components/ui/BlogPage';
+import Index from 'components/views/Index';
 
 const mapStateToProps = (state) => ({
   posts: state.posts.posts
@@ -33,4 +33,4 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => (
   )
 );
 
-export default connect(mapStateToProps, null, mergeProps)(BlogPage);
+export default connect(mapStateToProps, null, mergeProps)(Index);
