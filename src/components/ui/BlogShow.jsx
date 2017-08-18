@@ -24,3 +24,9 @@ export default class BlogShow extends Component {
     );
   }
 }
+
+BlogShow.propTpes = {
+  isLoading: PropTypes.bool,
+  error: PropTypes.bool,
+  post: PropTypes.array
+};

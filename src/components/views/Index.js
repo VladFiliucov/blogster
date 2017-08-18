@@ -8,8 +8,6 @@ const Index = (props) => (
   </div>
 );
 
-Index.propTypes = {
-  props: BlogPage.propTypes
-};
+Index.propTypes = BlogPage.propTypes;
 
 export default Index;

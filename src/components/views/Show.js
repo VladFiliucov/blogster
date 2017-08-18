@@ -7,3 +7,7 @@ const Show = (props) => (
     <BlogShow {...props} />
   </div>
 );
+
+Show.propTypes = BlogShow.propTypes;
+
+export default Show;
