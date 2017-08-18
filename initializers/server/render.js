@@ -35,7 +35,6 @@ export default (req, res) => {
       state.routes.push(route);
       assign(state.params, match.params)
       assign(state.query, req.query);
-      console.log("ROUTER STATE", state);
     }
     return match;
   });
