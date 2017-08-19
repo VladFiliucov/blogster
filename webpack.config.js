@@ -1,20 +1,20 @@
 /* eslint-disable */
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
-var path = require('path');
-const { resolve } = require('path');
+import path from 'path';
+import webpack from 'webpack';
 
-var webpack = require('webpack');
+import { resolve } from 'path';
 
-var root = path.join(process.cwd(), 'src');
 
-module.exports = {
+const root = path.join(process.cwd(), 'src');
+
+export default {
   context: resolve(__dirname, 'src'),
 
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
+    'webpack-hot-middleware/client',
     "./index.js"
   ],
 
@@ -75,6 +75,11 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      __SERVER__: false,
+      __CLIENT__: true,
+      __DEVELOPMENT__: true
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(NODE_ENV)

@@ -1,9 +1,10 @@
-import About from 'components/ui/shared/About';
+import AboutPage from 'components/views/AboutPage';
 
 const AboutRoute = {
   exact: true,
+  strict: true,
   path: '/about',
-  component: About
+  component: AboutPage
 }
 
 export default AboutRoute;

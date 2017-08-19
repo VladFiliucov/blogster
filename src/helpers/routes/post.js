@@ -1,12 +1,9 @@
+import { stringify } from 'qs';
+
 const postPath = ({ BASE_URL, id }) => {
   return `${BASE_URL}/posts/${id}`;
 };
 
-const postUrlObject = (postId) => (
-  {
-    pathname: '/posts',
-    search: `postId=${postId}`
-  }
-);
+const postUrl = (postId = ':postId') => `/posts/${postId}`;
 
-export { postPath, postUrlObject };
+export { postPath, postUrl };

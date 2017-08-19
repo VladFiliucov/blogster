@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import BlogShow from 'components/ui/BlogShow';
+import Show from 'components/views/Show';
 
 const mapStateToProps = (state) => ({
   post: state.post.post,
@@ -8,4 +8,4 @@ const mapStateToProps = (state) => ({
   error: state.post.error
 });
 
-export default connect(mapStateToProps)(BlogShow);
+export default connect(mapStateToProps)(Show);

@@ -2,14 +2,14 @@ import { connect } from 'react-redux';
 import { filter } from 'lodash/collection';
 import { assign } from 'lodash';
 
-import { postUrlObject } from 'helpers/routes/post';
-import BlogPage from 'components/ui/BlogPage';
+import { postUrl } from 'helpers/routes/post';
+import Index from 'components/views/Index';
 
 const mapStateToProps = (state) => ({
   posts: state.posts.posts
     .map(post => assign(
       {}, post, {
-        postUrl: postUrlObject(post.id)
+        postUrl: postUrl(post.id)
       })
     ),
   isLoading: state.posts.isLoading,
@@ -33,4 +33,4 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => (
   )
 );
 
-export default connect(mapStateToProps, null, mergeProps)(BlogPage);
+export default connect(mapStateToProps, null, mergeProps)(Index);

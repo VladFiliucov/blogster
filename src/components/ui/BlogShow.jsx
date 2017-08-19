@@ -16,7 +16,7 @@ export default class BlogShow extends Component {
       <div>
         { this.props.isLoading && <Spinner /> }
         {
-          !this.props.isLoading && !this.props.error &&
+          !this.props.isLoading && !this.props.error && post &&
             <Image image={post.image} />
         }
         { this.props.error && <h1>Something wrong with {this.props.error}</h1> }
@@ -24,3 +24,9 @@ export default class BlogShow extends Component {
     );
   }
 }
+
+BlogShow.propTpes = {
+  isLoading: PropTypes.bool,
+  error: PropTypes.bool,
+  post: PropTypes.array
+};
