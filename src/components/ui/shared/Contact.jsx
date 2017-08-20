@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
+
 import {orange500, blue500} from 'material-ui/styles/colors';
+import Paper from 'material-ui/Paper';
+
 import { set, assign } from 'lodash/object';
 
 const styles = {
@@ -16,6 +19,14 @@ const styles = {
   floatingLabelFocusStyle: {
     color: blue500,
   },
+  formContainer: {
+    width: '40%',
+    textAlign: 'center',
+    margin: '0 auto'
+  },
+  contactForm: {
+    paddingBottom: '3%'
+  }
 };
 
 export default class Contact extends Component {
@@ -28,36 +39,55 @@ export default class Contact extends Component {
           email: '',
           message: ''
         }
-      },
-      error: "omg"
-    }
-    this.onChange = this.onChange.bind(this)
+      }
+    };
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  onChange(e) {
-    this.setState(
-      set(
-        assign({}, this.state),
-        'form.values.fullName',
-        e.target.value
-      )
-    );
+  handleChange(e) {
+    this.setState(set(
+      assign({}, this.state),
+      `form.values.${e.target.name}`,
+      e.target.value
+    ));
   }
 
   render() {
     return (
-      <div>
+      <div style={styles.formContainer}>
         <h1>Contacts</h1>
-        <form>
-          <div>
-            <TextField
-              value={this.state.form.values.fullName}
-              onChange={this.onChange}
-              errorText={this.state.error}
-              floatingLabelText="Your name"
-            />
-          </div>
-        </form>
+        <Paper zDepth={4}>
+          <form style={styles.contactForm}>
+            <div>
+              <TextField
+                name={'fullName'}
+                value={this.state.form.values.fullName}
+                onChange={this.handleChange}
+                errorText=""
+                floatingLabelText="Your name"
+              />
+            </div>
+            <div>
+              <TextField
+                name={'email'}
+                value={this.state.form.values.email}
+                onChange={this.handleChange}
+                errorText=""
+                floatingLabelText="Your email"
+              />
+            </div>
+            <div>
+              <TextField
+                name={'message'}
+                value={this.state.form.values.message}
+                onChange={this.handleChange}
+                errorText=""
+                floatingLabelText="Message"
+                multiLine={true}
+              />
+            </div>
+          </form>
+      </Paper>
       </div>
     );
   }
