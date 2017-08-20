@@ -39,6 +39,13 @@ export default class Contact extends Component {
           email: '',
           message: ''
         }
+      },
+      errors: {
+        values: {
+          fullName: '',
+          email: '',
+          message: ''
+        }
       }
     };
     this.handleChange = this.handleChange.bind(this)
@@ -50,6 +57,21 @@ export default class Contact extends Component {
       `form.values.${e.target.name}`,
       e.target.value
     ));
+
+    if (!this.state.form.values[e.target.name]) {
+      this.setState(set(
+        assign({}, this.state),
+        `errors.values.${e.target.name}`,
+        "Can't be blank"
+      ));
+    } else {
+      this.setState(set(
+        assign({}, this.state),
+        `errors.values.${e.target.name}`,
+        ''
+      ));
+    }
+
   }
 
   render() {
@@ -63,7 +85,7 @@ export default class Contact extends Component {
                 name={'fullName'}
                 value={this.state.form.values.fullName}
                 onChange={this.handleChange}
-                errorText=""
+                errorText={this.state.errors.values.fullName}
                 hintText="Your name"
                 floatingLabelText="Your name"
               />
@@ -73,7 +95,7 @@ export default class Contact extends Component {
                 name={'email'}
                 value={this.state.form.values.email}
                 onChange={this.handleChange}
-                errorText=""
+                errorText={this.state.errors.values.email}
                 hintText="Your email"
               />
             </div>
@@ -82,7 +104,7 @@ export default class Contact extends Component {
                 name={'message'}
                 value={this.state.form.values.message}
                 onChange={this.handleChange}
-                errorText=""
+                errorText={this.state.errors.values.message}
                 hintText="Message"
                 multiLine={true}
               />
