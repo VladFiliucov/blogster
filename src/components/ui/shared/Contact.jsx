@@ -49,20 +49,15 @@ export default class Contact extends Component {
       }
     };
     this.handleChange = this.handleChange.bind(this)
+    this.validateForm = this.validateForm.bind(this)
   }
 
-  handleChange(e) {
-    this.setState(set(
-      assign({}, this.state),
-      `form.values.${e.target.name}`,
-      e.target.value
-    ));
-
+  validateForm(e) {
     if (!this.state.form.values[e.target.name]) {
       this.setState(set(
         assign({}, this.state),
         `errors.values.${e.target.name}`,
-        "Can't be blank"
+        'Can not be blank'
       ));
     } else {
       this.setState(set(
@@ -71,7 +66,15 @@ export default class Contact extends Component {
         ''
       ));
     }
+  }
 
+  handleChange(e) {
+    this.setState(set(
+      assign({}, this.state),
+      `form.values.${e.target.name}`,
+      e.target.value
+    ));
+    this.validateForm(e);
   }
 
   render() {
