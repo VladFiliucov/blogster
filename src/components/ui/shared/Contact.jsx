@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField';
 
 import {orange500, blue500} from 'material-ui/styles/colors';
 import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { set, assign } from 'lodash/object';
 
@@ -26,6 +27,9 @@ const styles = {
   },
   contactForm: {
     paddingBottom: '4%'
+  },
+  submitButton: {
+    marginTop: 30
   }
 };
 
@@ -112,6 +116,12 @@ export default class Contact extends Component {
                 multiLine={true}
               />
             </div>
+            <RaisedButton
+              style={styles.submitButton}
+              backgroundColor="#3db5da"
+              label="Send"
+              type="submit"
+            />
           </form>
       </Paper>
       </div>
