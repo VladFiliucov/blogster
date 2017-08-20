@@ -5,5 +5,6 @@ const postPath = ({ BASE_URL, id }) => {
 };
 
 const postUrl = (postId = ':postId') => `/posts/${postId}`;
+const editPostUrl = (postId = ':postId') => `/posts/${postId}/edit`;
 
-export { postPath, postUrl };
+export { postPath, postUrl, editPostUrl };
