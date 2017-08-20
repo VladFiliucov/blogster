@@ -25,7 +25,7 @@ const styles = {
     margin: '0 auto'
   },
   contactForm: {
-    paddingBottom: '3%'
+    paddingBottom: '4%'
   }
 };
 
@@ -55,7 +55,7 @@ export default class Contact extends Component {
   render() {
     return (
       <div style={styles.formContainer}>
-        <h1>Contacts</h1>
+        <h1>Contact Us</h1>
         <Paper zDepth={4}>
           <form style={styles.contactForm}>
             <div>
@@ -64,6 +64,7 @@ export default class Contact extends Component {
                 value={this.state.form.values.fullName}
                 onChange={this.handleChange}
                 errorText=""
+                hintText="Your name"
                 floatingLabelText="Your name"
               />
             </div>
@@ -73,7 +74,7 @@ export default class Contact extends Component {
                 value={this.state.form.values.email}
                 onChange={this.handleChange}
                 errorText=""
-                floatingLabelText="Your email"
+                hintText="Your email"
               />
             </div>
             <div>
@@ -82,7 +83,7 @@ export default class Contact extends Component {
                 value={this.state.form.values.message}
                 onChange={this.handleChange}
                 errorText=""
-                floatingLabelText="Message"
+                hintText="Message"
                 multiLine={true}
               />
             </div>
