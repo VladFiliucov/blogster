@@ -5,7 +5,7 @@ import {orange500, blue500} from 'material-ui/styles/colors';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import { set, assign } from 'lodash/object';
+import { set, assign, mapKeys } from 'lodash/object';
 
 const styles = {
   errorStyle: {
@@ -37,6 +37,8 @@ export default class Contact extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      submitted: false,
+      valid: false,
       form: {
         values: {
           fullName: '',
@@ -53,7 +55,9 @@ export default class Contact extends Component {
       }
     };
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.validateForm = this.validateForm.bind(this)
+    this.submitSuccess = this.submitSuccess.bind(this)
   }
 
   validateForm(e) {
@@ -81,49 +85,78 @@ export default class Contact extends Component {
     this.validateForm(e);
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    let hasErrors = false;
+
+    mapKeys(this.state.form.values, (value, key) => {
+      if (!value.length) {
+        this.setState(set(
+          assign({}, this.state),
+          `errors.values.${key}`,
+          'Can not be blank'
+        ));
+        hasErrors = true
+      }
+    });
+
+    !hasErrors && this.submitSuccess();
+  }
+
+  submitSuccess() {
+    this.setState({
+      submitted: true
+    });
+  }
+
   render() {
     return (
       <div style={styles.formContainer}>
-        <h1>Contact Us</h1>
-        <Paper zDepth={4}>
-          <form style={styles.contactForm}>
-            <div>
-              <TextField
-                name={'fullName'}
-                value={this.state.form.values.fullName}
-                onChange={this.handleChange}
-                errorText={this.state.errors.values.fullName}
-                hintText="Your name"
-                floatingLabelText="Your name"
-              />
-            </div>
-            <div>
-              <TextField
-                name={'email'}
-                value={this.state.form.values.email}
-                onChange={this.handleChange}
-                errorText={this.state.errors.values.email}
-                hintText="Your email"
-              />
-            </div>
-            <div>
-              <TextField
-                name={'message'}
-                value={this.state.form.values.message}
-                onChange={this.handleChange}
-                errorText={this.state.errors.values.message}
-                hintText="Message"
-                multiLine={true}
-              />
-            </div>
-            <RaisedButton
-              style={styles.submitButton}
-              backgroundColor="#3db5da"
-              label="Send"
-              type="submit"
-            />
-          </form>
-      </Paper>
+        { this.state.submitted
+          ? <h1>Submitted</h1>
+          : <div>
+            <h1>Contact Us</h1>
+            <Paper zDepth={4}>
+              <form style={styles.contactForm} onSubmit={this.handleSubmit}>
+                <div>
+                  <TextField
+                    name={'fullName'}
+                    value={this.state.form.values.fullName}
+                    onChange={this.handleChange}
+                    errorText={this.state.errors.values.fullName}
+                    hintText="Your name"
+                    floatingLabelText="Your name"
+                  />
+                </div>
+                <div>
+                  <TextField
+                    name={'email'}
+                    value={this.state.form.values.email}
+                    onChange={this.handleChange}
+                    errorText={this.state.errors.values.email}
+                    hintText="Your email"
+                  />
+                </div>
+                <div>
+                  <TextField
+                    name={'message'}
+                    value={this.state.form.values.message}
+                    onChange={this.handleChange}
+                    errorText={this.state.errors.values.message}
+                    hintText="Message"
+                    multiLine={true}
+                  />
+                </div>
+                <RaisedButton
+                  style={styles.submitButton}
+                  backgroundColor="#3db5da"
+                  label="Send"
+                  type="submit"
+                />
+              </form>
+            </Paper>
+          </div>
+        }
       </div>
     );
   }
