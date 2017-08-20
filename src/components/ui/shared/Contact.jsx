@@ -1,37 +1,12 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 
-import {orange500, blue500} from 'material-ui/styles/colors';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import { set, assign, mapKeys } from 'lodash/object';
+import styles from 'components/ui/shared/contactStyles';
 
-const styles = {
-  errorStyle: {
-    color: orange500,
-  },
-  underlineStyle: {
-    borderColor: orange500,
-  },
-  floatingLabelStyle: {
-    color: orange500,
-  },
-  floatingLabelFocusStyle: {
-    color: blue500,
-  },
-  formContainer: {
-    width: '40%',
-    textAlign: 'center',
-    margin: '0 auto'
-  },
-  contactForm: {
-    paddingBottom: '4%'
-  },
-  submitButton: {
-    marginTop: 30
-  }
-};
+import { set, assign, mapKeys } from 'lodash/object';
 
 export default class Contact extends Component {
   constructor(props) {
