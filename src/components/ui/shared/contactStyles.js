@@ -23,6 +23,11 @@ export default {
   },
   submitButton: {
     marginTop: 30
+  },
+  submitMessageContainer: {
+    textAlign: 'center',
+    margin: '0 auto',
+    marginTop: 100
   }
 };
 

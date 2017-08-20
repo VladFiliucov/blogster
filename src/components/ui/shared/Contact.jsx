@@ -4,6 +4,8 @@ import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import Submitted from 'components/ui/shared/Submitted';
+
 import styles from 'components/ui/shared/contactStyles';
 
 import { set, assign, mapKeys } from 'lodash/object';
@@ -13,7 +15,6 @@ export default class Contact extends Component {
     super(props);
     this.state = {
       submitted: false,
-      valid: false,
       form: {
         values: {
           fullName: '',
@@ -88,7 +89,7 @@ export default class Contact extends Component {
     return (
       <div style={styles.formContainer}>
         { this.state.submitted
-          ? <h1>Submitted</h1>
+          ? <Submitted />
           : <div>
             <h1>Contact Us</h1>
             <Paper zDepth={4}>
