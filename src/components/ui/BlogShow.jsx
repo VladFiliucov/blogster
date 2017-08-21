@@ -19,14 +19,16 @@ export default class BlogShow extends Component {
         { this.props.isLoading && <Spinner /> }
         {
           !this.props.isLoading && !this.props.error && post &&
-            <Image image={post.image} />
+            <div>
+              <Image image={post.image} />
+              <Link to={editPostUrl(post.id)} >
+                <div>
+                  Edit
+                </div>
+              </Link>
+          </div>
         }
         { this.props.error && <h1>Something wrong with {this.props.error}</h1> }
-        <Link exact to={editPostUrl(post.id)} >
-          <div>
-            Edit
-          </div>
-        </Link>
       </div>
     );
   }
