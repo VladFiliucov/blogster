@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Spinner from 'components/ui/shared/Spinner';
 import Image from 'components/ui/Image';
+import BlogEditForm from 'components/ui/BlogEditForm'
 
 export default class BlogEdit extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class BlogEdit extends Component {
           !this.props.isLoading && !this.props.error && post &&
             <div>
               <Image image={post.image} />
-              <h1>{post.text}</h1>
+              <BlogEditForm post={post} />
             </div>
         }
         { this.props.error && <h1>Something wrong with {this.props.error}</h1> }
