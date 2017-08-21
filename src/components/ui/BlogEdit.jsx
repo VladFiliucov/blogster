@@ -18,7 +18,10 @@ export default class BlogEdit extends Component {
         { this.props.isLoading && <Spinner /> }
         {
           !this.props.isLoading && !this.props.error && post &&
-            <Image image={post.image} />
+            <div>
+              <Image image={post.image} />
+              <h1>{post.text}</h1>
+            </div>
         }
         { this.props.error && <h1>Something wrong with {this.props.error}</h1> }
       </div>
