@@ -4,6 +4,15 @@ import { Field, reduxForm } from 'redux-form';
 
 import RaisedButton from 'material-ui/RaisedButton';
 
+const validate = (values) => {
+  const errors = {};
+
+  if (values.text.length < 5)
+    errors.text = 'Text have to be at least 5 chars';
+
+  return errors;
+};
+
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div>
     <label>{label}</label>
@@ -11,7 +20,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
   </div>
 );
 
-const BlogEditForm = ({ handleSubmit }) => (
+const BlogEditForm = ({ handleSubmit, pristine, submitting, reset }) => (
   <div>
     <form onSubmit={handleSubmit} >
       <Field
@@ -26,6 +35,10 @@ const BlogEditForm = ({ handleSubmit }) => (
         type='text'
         name='author'
       />
+      {
+        !pristine && !submitting &&
+          <RaisedButton label="Reset" onClick={reset} />
+      }
       <RaisedButton
         label="Update"
         type="submit"
@@ -43,6 +56,7 @@ export default connect(
   })
 )(reduxForm({
   form: 'editPost',
+  validate,
   onSubmit: (values) => alert(JSON.stringify(values))
 })(BlogEditForm));
 
