@@ -4,21 +4,8 @@ import { Field, reduxForm } from 'redux-form';
 
 import RaisedButton from 'material-ui/RaisedButton';
 
-const validate = (values) => {
-  const errors = {};
-
-  if (values.text.length < 5)
-    errors.text = 'Text have to be at least 5 chars';
-
-  return errors;
-};
-
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
-  <div>
-    <label>{label}</label>
-    <input {...input} type={type} />
-  </div>
-);
+import renderField from 'components/ui/renderField';
+import validate from 'helpers/validate';
 
 const BlogEditForm = ({ handleSubmit, pristine, submitting, reset }) => (
   <div>
