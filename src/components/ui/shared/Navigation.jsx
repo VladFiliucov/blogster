@@ -13,10 +13,17 @@ const Navigation = () => (
       </div>
     </NavLink>
     <NavLink exact to='/about'
-      className='nav-link right'
+      className='nav-link center'
       activeStyle={{ background: '#80D8FF' }} >
       <div>
         About
+      </div>
+    </NavLink>
+    <NavLink exact to='/contact'
+      className='nav-link right'
+      activeStyle={{ background: '#80D8FF' }} >
+      <div>
+        Contact
       </div>
     </NavLink>
   </nav>

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import Spinner from 'components/ui/shared/Spinner';
 import Image from 'components/ui/Image';
-import { editPostUrl } from 'helpers/routes/post'
+import BlogEditForm from 'components/ui/BlogEditForm'
 
-export default class BlogShow extends Component {
+export default class BlogEdit extends Component {
   constructor(props) {
     super(props);
   }
@@ -16,17 +15,14 @@ export default class BlogShow extends Component {
 
     return (
       <div>
+        <h1>This is edit page</h1>
         { this.props.isLoading && <Spinner /> }
         {
           !this.props.isLoading && !this.props.error && post &&
             <div>
               <Image image={post.image} />
-              <Link to={editPostUrl(post.id)} >
-                <div>
-                  Edit
-                </div>
-              </Link>
-          </div>
+              <BlogEditForm post={post} />
+            </div>
         }
         { this.props.error && <h1>Something wrong with {this.props.error}</h1> }
       </div>
@@ -34,7 +30,7 @@ export default class BlogShow extends Component {
   }
 }
 
-BlogShow.propTpes = {
+BlogEdit.propTpes = {
   isLoading: PropTypes.bool,
   error: PropTypes.bool,
   post: PropTypes.array

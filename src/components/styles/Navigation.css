@@ -4,7 +4,7 @@
 }
 
 .nav-link {
-  flex-grow: 2;
+  flex-grow: 3;
   flex-basis: 200px;
   color: #fff;
   padding: 15px;
@@ -14,13 +14,13 @@
 }
 
 .left {
-  margin-left: 0;
+  margin-right: 2;
 }
 
 .left a {
-  margin-left: 0;
+  margin-right: 0;
 }
 
 .right {
-  margin-right: 0;
+  margin-left: 2;
 }
