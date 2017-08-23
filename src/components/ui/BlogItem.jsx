@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import Image from './Image';
-import TextBox from './TextBox';
-import PostDetails from './PostDetails';
+import Image from 'components/ui/Image';
+import TextBox from 'components/ui/TextBox';
+import PostDetails from 'components/ui/PostDetails';
 import LikeContainer from 'components/containers/LikeContainer';
 
 import 'components/styles/blog/BlogItem.css'
