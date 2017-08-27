@@ -10,6 +10,8 @@ plan.target('production', {
 });
 
 plan.local(function(local) {
+  local.log('Running specs');
+  local.exec('npm run test');
   local.log('Copy files to remote host');
   var filesToCopy = local.exec('git ls-files', {silent: true});
   local.transfer(filesToCopy, '/tmp/' + tmpDir);
@@ -29,7 +31,7 @@ plan.remote(function(remote) {
 
   remote.log('Reload application');
   remote.exec('ln -snf ~/' + tmpDir + ' ~/current');
-  remote.exec('(cd ~/current && pm2 restart pm2.config.js --env production)')
+  remote.exec('(cd ~/current && pm2 restart pm2.config.js --env production)');
 
-  remote.log('Deploy process completed.')
-})
+  remote.log('Deploy process completed.');
+});
