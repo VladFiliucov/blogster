@@ -7,6 +7,7 @@ import { assign } from 'lodash/object';
 import { compact } from 'lodash/array';
 import { parse } from 'qs';
 
+import webpackAsset from './webpackAsset';
 import createStore from 'store';
 
 import createRoutes from 'routes';
@@ -76,7 +77,7 @@ export default (req, res) => {
     res.status(200);
     res.render(
       'index',
-      { initialState, content, head }
+      { initialState, content, head, webpackAsset }
     );
   })
     .catch(error => {
