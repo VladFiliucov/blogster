@@ -15,7 +15,7 @@ export default {
   },
 
   output: {
-    path: path.join(process.cwd(), 'dist'),
+    path: path.join(process.cwd(), 'dist', 'assets'),
     filename: '[name].[chunkhash].js'
   },
 
@@ -56,7 +56,7 @@ export default {
       __SERVER__: false,
       __CLIENT__: true,
       __DEVELOPMENT__: false,
-      'process.env.NODE_ENV': 'production'
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new ExtractTextPlugin('[name].[chunkhash].css'),
     new webpack.optimize.CommonsChunkPlugin({

@@ -20,7 +20,7 @@ application.use(morgan('dev'));
 application.set('views', __dirname);
 application.set('view engine', 'ejs');
 
-if (__DEVELOPMENT) {
+if (__DEVELOPMENT__) {
   const webpack = require('webpack');
   const config = require('../webpack/development.js').default;
   const webpackDev = require('webpack-dev-middleware');
