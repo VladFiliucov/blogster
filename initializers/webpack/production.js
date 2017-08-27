@@ -2,6 +2,7 @@
 import path from 'path';
 import webpack from 'webpack';
 
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 const root = path.join(process.cwd(), 'src');
@@ -34,22 +35,16 @@ export default {
       },
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1
-            }
-          }
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader']
+        })
       }
     ]
   },
 
   resolve: {
+    extensions: [".js", ".jsx"],
     modules: [
       path.join(process.cwd(), "src"),
       "node_modules"
@@ -63,6 +58,7 @@ export default {
       __DEVELOPMENT__: false,
       'process.env.NODE_ENV': 'production'
     }),
+    new ExtractTextPlugin('[name].[chunkhash].css'),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: function(module) {
@@ -72,7 +68,7 @@ export default {
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: 'source-map'
     }),
-    new webpack.BundleAnalyzerPlugin({
+    new BundleAnalyzerPlugin({
       analyzerMode: 'static'
     })
   ]
