@@ -21,7 +21,7 @@ export default {
   output: {
     filename: 'bundle.js',
     path: resolve(__dirname, 'dist'),
-    publicPath: '/'
+    publicPath: '/assets'
   },
 
   devtool: 'inline-source-map',
