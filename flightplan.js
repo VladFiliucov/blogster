@@ -28,7 +28,7 @@ plan.remote(function(remote) {
   remote.exec('npm --prefix ~/' + tmpDir + ' run build');
 
   remote.log('Reload application');
-  remote.exec('ln -snf ~/blogster' + tmpDir + ' ~/blogster/current');
+  remote.exec('ln -snf ~/blogster/versions/' + tmpDir + ' ~/blogster/current');
   remote.exec('(cd ~/blogster/current && pm2 start pm2.config.js --env production)');
 
   remote.log('Deploy process completed.');
