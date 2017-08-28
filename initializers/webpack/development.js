@@ -10,7 +10,7 @@ import { resolve } from 'path';
 const root = path.join(process.cwd(), 'src');
 
 export default {
-  context: resolve(__dirname, 'src'),
+  context: root,
 
   entry: [
     'react-hot-loader/patch',
