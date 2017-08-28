@@ -10,9 +10,9 @@ const findAssetInManifest = (manifest, asset, extension) => (
 );
 
 if (__DEVELOPMENT__) {
-  assetPath = (asset, extension) => {
-    `assets/${asset}.${extension}`;
-  };
+  assetPath = (asset, extension) => (
+    `assets/${asset}.${extension}`
+  );
 }
 
 else {
