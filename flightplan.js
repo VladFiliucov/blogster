@@ -18,14 +18,14 @@ plan.local(function(local) {
 
 plan.remote(function(remote) {
   remote.log('Moving folder to web root');
-  remote.exec('cp -R /tmp/' + tmpDir + ' ~');
+  remote.exec('cp -R /tmp/' + tmpDir + ' ~/blogster/versions');
   remote.rm('-rf /tmp/' + tmpDir);
 
   remote.log('Installing dependencies');
-  remote.exec('npm --prefix ~/' + tmpDir + ' install ~/' + tmpDir);
+  remote.exec('npm --prefix ~/blogster/versions/' + tmpDir + ' install ~/blogster/versions/' + tmpDir);
 
   remote.log('Build');
-  remote.exec('npm --prefix ~/' + tmpDir + ' run build');
+  remote.exec('npm --prefix ~/blogster/versions/' + tmpDir + ' run build');
 
   remote.log('Reload application');
   remote.exec('ln -snf ~/blogster/versions/' + tmpDir + ' ~/blogster/current');
