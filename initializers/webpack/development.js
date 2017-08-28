@@ -31,7 +31,7 @@ export default {
 
     contentBase: resolve(__dirname, 'dist'),
 
-    publicPath: '/'
+    publicPath: '/assets/'
   },
 
   module: {
