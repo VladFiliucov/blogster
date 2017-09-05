@@ -6,33 +6,23 @@ import webpack from 'webpack';
 
 import { resolve } from 'path';
 
-
 const root = path.join(process.cwd(), 'src');
 
 export default {
   context: root,
 
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-hot-middleware/client',
-    "./index.js"
-  ],
+  entry: {
+    bundle: ['react-hot-loader/patch', 'webpack-hot-middleware/client', "./index.js"],
+    vendor: ['react', 'lodash', 'redux', 'react-redux', 'material-ui', 'moment', 'superagent', 'morgan', 'react-dom', 'react-helmet', 'react-router-dom', 'react-tap-event-plugin', 'redux-form', 'redux-thunk']
+  },
 
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: resolve(__dirname, 'dist'),
     publicPath: '/assets/'
   },
 
   devtool: 'inline-source-map',
-
-  devServer: {
-    hot: true,
-
-    contentBase: resolve(__dirname, 'dist'),
-
-    publicPath: '/assets/'
-  },
 
   module: {
     rules: [
@@ -70,7 +60,7 @@ export default {
     modules: [
       "node_modules",
       './src',
-      path.resolve(__dirname, "dist")
+      path.resolve(__dirname, "/assets/")
     ]
   },
 
@@ -87,7 +77,10 @@ export default {
     }),
 
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    })
   ]
 };
 
