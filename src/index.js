@@ -12,7 +12,10 @@ const render = () => {
     <AppContainer >
       <App />
     </AppContainer>,
-    rootElement
+    rootElement,
+    () => {
+      delete window.__INITIAL_STATE__;
+    }
   );
 };
 
